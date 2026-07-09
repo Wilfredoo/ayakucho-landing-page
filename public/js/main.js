@@ -197,7 +197,7 @@
       if (!open) {
         if (!videoRegion.querySelector("iframe")) {
           var iframe = document.createElement("iframe");
-          iframe.src = "https://www.youtube.com/embed/dQw4w9WgXcQ"; // placeholder ID
+          iframe.src = "https://www.youtube.com/watch?v=KSrXyIQeAUo"; 
           iframe.title = "Ayakucho — how to play in 60 seconds";
           iframe.allow = "accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
           iframe.allowFullscreen = true;
