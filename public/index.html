@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ayakucho — A social deduction game from the heart of Peru</title>
+  <meta name="description" content="Ayakucho is a social deduction board game rooted in Peruvian folklore. Launching on Kickstarter October 10, 2026." />
+
+  <!-- Open Graph (uses placeholder image for now) -->
+  <meta property="og:title" content="Ayakucho — A social deduction game from the heart of Peru" />
+  <meta property="og:description" content="A social deduction board game rooted in Peruvian folklore. Launching October 10, 2026." />
+  <meta property="og:image" content="placeholder.jpg" />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- Persistent launch-date banner -->
+  <div class="launch-banner">
+    <span class="launch-banner__text" data-i18n="banner">Launching on Kickstarter · October 10, 2026</span>
+    <select class="lang-select" id="lang-select" aria-label="Language">
+      <option value="en">EN</option>
+      <option value="es">ES</option>
+      <option value="pt">PT</option>
+      <option value="de">DE</option>
+      <option value="ru">RU</option>
+      <option value="be">BE</option>
+    </select>
+  </div>
+
+  <!-- ============ 1. HERO CAROUSEL ============ -->
+  <header class="hero">
+    <div class="carousel" data-carousel aria-roledescription="carousel" aria-label="Ayakucho game images">
+      <div class="carousel__viewport" data-carousel-viewport>
+        <ul class="carousel__track" data-carousel-track>
+          <li class="slide" role="group" aria-roledescription="slide" aria-label="1 of 5">
+            <span class="slide__ghost">Slide 1</span>
+            <img src="img/slide-1.jpg" alt="The Ayakucho game box and board laid out on a table, ready to play" />
+          </li>
+          <li class="slide" role="group" aria-roledescription="slide" aria-label="2 of 5">
+            <span class="slide__ghost">Slide 2</span>
+            <img src="img/slide-2.jpg" alt="Illustrated character cards depicting figures from Peruvian folklore" />
+          </li>
+          <li class="slide" role="group" aria-roledescription="slide" aria-label="3 of 5">
+            <span class="slide__ghost">Slide 3</span>
+            <img src="img/slide-3.jpg" alt="Friends gathered around a table mid-game, deep in discussion" />
+          </li>
+          <li class="slide" role="group" aria-roledescription="slide" aria-label="4 of 5">
+            <span class="slide__ghost">Slide 4</span>
+            <img src="img/slide-4.jpg" alt="Close-up of hand-painted Andean artwork on a game card" />
+          </li>
+          <li class="slide" role="group" aria-roledescription="slide" aria-label="5 of 5">
+            <span class="slide__ghost">Slide 5</span>
+            <img src="img/slide-5.jpg" alt="The full set of game components arranged in a fan" />
+          </li>
+        </ul>
+      </div>
+
+      <button class="carousel__arrow carousel__arrow--prev" type="button" data-carousel-prev aria-label="Previous slide">&#8249;</button>
+      <button class="carousel__arrow carousel__arrow--next" type="button" data-carousel-next aria-label="Next slide">&#8250;</button>
+
+      <div class="carousel__dots" data-carousel-dots role="tablist" aria-label="Choose slide"></div>
+    </div>
+
+    <div class="hero__intro">
+      <span class="badge" data-i18n="badge">Launching October 10, 2026</span>
+      <h1 class="hero__headline" data-i18n="headline">A social deduction game from the heart of Peru</h1>
+    </div>
+  </header>
+
+  <div class="greca" role="presentation"></div>
+
+  <main>
+    <!-- ============ CON MODE (Brettspiel Berlin) ============ -->
+    <!-- Shown automatically on 2026-07-11 / 2026-07-12 (Berlin time).
+         Force on/off for testing with ?con=1 / ?con=0 -->
+    <div data-con-wrap hidden>
+      <section class="section section--con" aria-labelledby="con-title">
+        <div class="con-card">
+          <h2 id="con-title" class="con-card__title" data-i18n="conTitle">At Brettspiel Berlin Con? Come playtest Ayakucho</h2>
+          <p class="con-card__lede" data-i18n="conLede">I'm at the con this weekend running live playtests. Leave your WhatsApp number and I'll message you everything you need to book a seat at the table.</p>
+
+          <form
+            class="con-form"
+            name="con-playtest"
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            data-con-form
+          >
+            <input type="hidden" name="form-name" value="con-playtest" />
+            <p class="hidden" aria-hidden="true">
+              <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+            </p>
+
+            <div class="con-form__row">
+              <label class="field">
+                <span class="field__label"><span data-i18n="conName">First name</span> <span class="field__opt" data-i18n="optional">(optional)</span></span>
+                <input class="field__input" type="text" name="name" autocomplete="given-name" />
+              </label>
+              <label class="field">
+                <span class="field__label"><span data-i18n="conWhatsapp">WhatsApp number</span> <span class="req">*</span></span>
+                <input class="field__input" type="tel" name="whatsapp" required autocomplete="tel" placeholder="+49 151 23456789" />
+              </label>
+            </div>
+
+            <button class="btn btn--red" type="submit" data-i18n="conSubmit">Book a playtest</button>
+
+            <p class="form-success" data-con-success hidden role="status" data-i18n="conSuccess">
+              Got it — I'll message you on WhatsApp shortly. See you at the con! 🎲
+            </p>
+          </form>
+        </div>
+      </section>
+      <div class="greca" role="presentation"></div>
+    </div>
+
+    <!-- ============ 2. EMAIL CAPTURE ============ -->
+    <section class="section section--capture" aria-labelledby="capture-title">
+      <div class="capture-card">
+        <h2 id="capture-title" class="capture-card__title" data-i18n="captureTitle">Join the waiting list</h2>
+        <p class="capture-card__lede" data-i18n="captureLede">We launch on Kickstarter October 10, 2026. Leave your email and we'll tell you the moment it goes live.</p>
+
+        <!-- Netlify Forms: name + method + data-netlify enable capture. See README for setup. -->
+        <form
+          class="capture-form"
+          name="launch-signup"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          data-capture-form
+        >
+          <input type="hidden" name="form-name" value="launch-signup" />
+          <input type="hidden" name="lang" value="en" data-lang-field />
+          <p class="hidden" aria-hidden="true">
+            <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+          </p>
+
+          <label class="field">
+            <span class="field__label"><span data-i18n="emailLabel">Email</span> <span class="req">*</span></span>
+            <input class="field__input" type="email" name="email" required autocomplete="email" placeholder="you@example.com" />
+          </label>
+
+          <label class="field field--tight">
+            <span class="field__label"><span data-i18n="heardLabel">Did someone share this page with you?</span> <span class="field__opt" data-i18n="optional">(optional)</span></span>
+            <span class="suggest-wrap">
+              <input class="field__input" type="text" name="heard-from" autocomplete="off" placeholder="Daniel Ramos" data-heard-input />
+              <span class="suggest" data-suggest hidden></span>
+            </span>
+          </label>
+          <p class="field__hint" data-i18n="giftNote">The 3 people who share this page the most will each receive a personal gift I'll bring back from Peru when I return in October.</p>
+
+          <button class="toggle-link" type="button" data-address-toggle aria-expanded="false" aria-controls="address-region">
+            <span class="toggle-link__icon" aria-hidden="true">+</span>
+            <span data-i18n="addrToggle">Want a handwritten note from Peru? Add your address</span>
+          </button>
+
+          <div class="address-region" id="address-region" data-address-region hidden>
+            <p class="field__hint field__hint--top" data-i18n="addrNote">You'll receive a note handwritten by me during October.</p>
+            <div class="addr-grid">
+              <label class="field addr-full">
+                <span class="field__label" data-i18n="street">Street and number</span>
+                <input class="field__input" type="text" name="addr-street" autocomplete="street-address" />
+              </label>
+              <label class="field">
+                <span class="field__label" data-i18n="city">City</span>
+                <input class="field__input" type="text" name="addr-city" autocomplete="address-level2" />
+              </label>
+              <label class="field">
+                <span class="field__label" data-i18n="region">State / Region</span>
+                <input class="field__input" type="text" name="addr-region" autocomplete="address-level1" />
+              </label>
+              <label class="field">
+                <span class="field__label" data-i18n="postal">Postal code</span>
+                <input class="field__input" type="text" name="addr-postal" autocomplete="postal-code" />
+              </label>
+              <label class="field">
+                <span class="field__label" data-i18n="country">Country</span>
+                <input class="field__input" type="text" name="addr-country" autocomplete="country-name" />
+              </label>
+            </div>
+          </div>
+
+          <button class="btn btn--red" type="submit" data-i18n="submit">Notify me on launch</button>
+
+          <p class="smallprint" data-i18n="smallprint">You'll receive exactly 3 emails: a confirmation right now, a reminder 3 days before the campaign starts, and one final email 3 days before it ends. Your email is stored securely, transmitted encrypted, never shared or sold, and deleted on request.</p>
+
+          <p class="form-success" data-form-success hidden role="status" data-i18n="success">
+            You're on the list — a confirmation email is on its way. See you October 10! 🎉
+          </p>
+        </form>
+      </div>
+    </section>
+
+    <div class="greca" role="presentation"></div>
+
+    <!-- ============ 3. VIDEO TOGGLE ============ -->
+    <section class="section section--video" aria-labelledby="video-title">
+      <div class="video-card" data-video>
+        <button class="video-card__trigger" type="button" data-video-trigger aria-expanded="false" aria-controls="video-region">
+          <span class="video-card__play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+          <span class="video-card__label" id="video-title" data-i18n="videoLabel">Watch a game in 60 seconds</span>
+        </button>
+        <div class="video-card__region" id="video-region" data-video-region hidden></div>
+      </div>
+    </section>
+
+    <div class="greca" role="presentation"></div>
+
+    <!-- ============ 4. PERSONA FAQ ============ -->
+    <section class="section section--faq" aria-label="Frequently asked questions">
+      <article class="faq" data-faq>
+        <h2 class="faq__q" data-i18n="faq1q">I play Werewolf. Why is this different?</h2>
+        <p class="faq__a" data-i18n="faq1a">Ayakucho keeps the bluffing and late-night arguments you love, but no one ever sits out — eliminated players slip into the spirit world and keep influencing the living. Every role is drawn from Peruvian folklore, so the hidden powers feel like characters, not just labels.</p>
+        <div class="faq__more" data-faq-more hidden>
+          <p data-i18n="faq1more">Instead of dying and watching, a knocked-out player becomes a spirit who can whisper one clue per round — so the table stays loud and everyone stays in the game. Rounds are shorter and role interactions are asymmetric, meaning two games with the same roles rarely play out the same way. If Werewolf is your gateway, this is the next room in the house.</p>
+        </div>
+        <button class="faq__btn" type="button" data-faq-toggle aria-expanded="false">
+          <span class="faq__btn-icon" aria-hidden="true">+</span>
+          <span data-faq-btn-label>More</span>
+        </button>
+      </article>
+
+      <article class="faq" data-faq>
+        <h2 class="faq__q" data-i18n="faq2q">Can I play this with my friends tonight?</h2>
+        <p class="faq__a" data-i18n="faq2a">Once it ships, yes — Ayakucho is built for 5 to 12 players and teaches in about three minutes. If you can host a dinner, you can host a game.</p>
+        <div class="faq__more" data-faq-more hidden>
+          <p data-i18n="faq2more">There's no app, no companion device, and no reading of long rulebooks mid-game — one moderator card walks a first-timer through the whole night. A full game runs 20 to 30 minutes, so you can fit several rounds into one sitting and swap roles between them. It's designed for the exact moment when everyone's around the table and someone says "okay, one more."</p>
+        </div>
+        <button class="faq__btn" type="button" data-faq-toggle aria-expanded="false">
+          <span class="faq__btn-icon" aria-hidden="true">+</span>
+          <span data-faq-btn-label>More</span>
+        </button>
+      </article>
+    </section>
+
+    <div class="greca" role="presentation"></div>
+
+    <!-- ============ 5. MEET THE CREATORS ============ -->
+    <section class="section section--creators" aria-labelledby="creators-title">
+      <h2 id="creators-title" class="creators__title" data-i18n="creatorsTitle">Meet the creators</h2>
+
+      <article class="creator" data-creator>
+        <button class="creator__btn" type="button" data-creator-toggle aria-expanded="false">
+          <span class="creator__name">Wilfredo Casas</span>
+          <span class="creator__role" data-i18n="roleWilfredo">Game design &amp; code</span>
+          <span class="creator__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="creator__panel" data-creator-panel hidden>
+          <img class="creator__photo" src="img/creator-wilfredo.jpg" alt="Portrait of Wilfredo Casas" />
+          <p class="creator__bio" data-i18n="bioWilfredo">Game designer, developer and filmmaker from Peru. He grew up with the legends behind this game — and he's the one writing your handwritten notes from Peru.</p>
+        </div>
+      </article>
+
+      <article class="creator" data-creator>
+        <button class="creator__btn" type="button" data-creator-toggle aria-expanded="false">
+          <span class="creator__name">Mariya Stankevich</span>
+          <span class="creator__role" data-i18n="roleMariya">Lead artist</span>
+          <span class="creator__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="creator__panel" data-creator-panel hidden>
+          <img class="creator__photo" src="img/creator-mariya.jpg" alt="Portrait of Mariya Stankevich" />
+          <p class="creator__bio" data-i18n="bioMariya">Lead artist. The world of Ayakucho — its characters, cards and board — is painted by her hand.</p>
+        </div>
+      </article>
+
+      <article class="creator" data-creator>
+        <button class="creator__btn" type="button" data-creator-toggle aria-expanded="false">
+          <span class="creator__name">Maja Ola</span>
+          <span class="creator__role" data-i18n="roleMaja">Additional art</span>
+          <span class="creator__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="creator__panel" data-creator-panel hidden>
+          <img class="creator__photo" src="img/creator-maja.jpg" alt="Portrait of Maja Ola" />
+          <p class="creator__bio" data-i18n="bioMaja">Contributing artist. She adds additional illustrations and graphic details across the game.</p>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <!-- ============ 6. FOOTER ============ -->
+  <footer class="footer">
+    <p class="footer__credit" data-i18n="footerCredit">Made by Wilfredo Casas · Art by Mariya Stankevich</p>
+    <p class="footer__addl" data-i18n="footerAddl">Additional art by Maja Ola</p>
+    <p class="footer__date" data-i18n="banner">Launching on Kickstarter · October 10, 2026</p>
+    <nav class="footer__links" aria-label="Social and campaign links">
+      <a href="https://www.instagram.com/ayakuchogamelab/" target="_blank" rel="noopener" class="footer__link">Instagram</a>
+      <a href="#" class="footer__link">Kickstarter</a>
+    </nav>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
