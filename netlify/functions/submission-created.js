@@ -185,10 +185,17 @@ exports.handler = async function (event) {
     if (name) {
       connectLambda(event); // required in Lambda-compat functions before getStore
       var store = getStore("referrers");
-      var counts = (await store.get("counts", { type: "json" })) || {};
       var key = name.toLowerCase();
-      counts[key] = (counts[key] || 0) + 1;
-      await store.setJSON("counts", counts);
+      // Conditional write with retry: concurrent submissions each re-read
+      // the latest counts instead of overwriting each other.
+      for (var attempt = 0; attempt < 4; attempt++) {
+        var got = await store.getWithMetadata("counts", { type: "json" });
+        var counts = (got && got.data) || {};
+        counts[key] = (counts[key] || 0) + 1;
+        var res = await store.setJSON("counts", counts,
+          got && got.etag ? { onlyIfMatch: got.etag } : { onlyIfNew: true });
+        if (!res || res.modified !== false) break; // written (or older lib without conditionals)
+      }
     }
   } catch (e) {
     console.error("referrer tally failed:", e.message);
