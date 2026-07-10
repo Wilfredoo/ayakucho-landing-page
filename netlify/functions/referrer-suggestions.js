@@ -1,8 +1,9 @@
 /* GET /.netlify/functions/referrer-suggestions
-   Returns the most frequent "who shared this with you" names as a JSON
-   array, for the datalist suggestions on the landing page. Names are
-   aggregated by submission-created.js; anything email-like or with
-   digits is filtered out before it's ever stored. */
+   Returns the most frequent "who shared this with you" names as
+   [{name, count}] sorted by count — feeds both the input suggestions
+   and the public top-2 leaderboard. Names are aggregated by
+   submission-created.js; anything email-like or with digits is
+   filtered out before it's ever stored. */
 
 const { getStore, connectLambda } = require("@netlify/blobs");
 
@@ -22,7 +23,7 @@ exports.handler = async function (event) {
     var top = Object.keys(counts)
       .sort(function (a, b) { return counts[b] - counts[a]; })
       .slice(0, 8)
-      .map(titleCase);
+      .map(function (k) { return { name: titleCase(k), count: counts[k] }; });
     return { statusCode: 200, headers: headers, body: JSON.stringify(top) };
   } catch (e) {
     return { statusCode: 200, headers: headers, body: "[]" };

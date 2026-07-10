@@ -20,7 +20,7 @@ const T = {
         "  3. One final email 3 days before the campaign ends.",
         "",
         "About your data: your email is stored securely, sent only over encrypted connections, never shared or sold, and used for nothing but these three emails. Reply \"delete\" at any time and it's gone.",
-        hasAddress ? "\nSince you left your address, a handwritten note from Peru will reach you during October." : "",
+        hasAddress ? "\nSince you left your address, a handwritten note will reach you shortly before launch." : "",
         "",
         "— Wilfredo Casas",
         SITE
@@ -39,7 +39,7 @@ const T = {
         "  3. Un último correo 3 días antes de que la campaña termine.",
         "",
         "Sobre tus datos: tu correo se guarda de forma segura, se envía solo por conexiones cifradas, nunca se comparte ni se vende, y no se usa para nada más que estos tres correos. Responde \"borrar\" cuando quieras y desaparece.",
-        hasAddress ? "\nComo dejaste tu dirección, una nota escrita a mano desde Perú te llegará durante octubre." : "",
+        hasAddress ? "\nComo dejaste tu dirección, una nota escrita a mano te llegará poco antes del lanzamiento." : "",
         "",
         "— Wilfredo Casas",
         SITE
@@ -58,7 +58,7 @@ const T = {
         "  3. Um último e-mail 3 dias antes de a campanha terminar.",
         "",
         "Sobre seus dados: seu e-mail é armazenado com segurança, enviado apenas por conexões criptografadas, nunca é compartilhado nem vendido, e não é usado para nada além desses três e-mails. Responda \"apagar\" a qualquer momento e ele some.",
-        hasAddress ? "\nComo você deixou seu endereço, um bilhete escrito à mão desde o Peru chegará até você durante outubro." : "",
+        hasAddress ? "\nComo você deixou seu endereço, um bilhete escrito à mão chegará pouco antes do lançamento." : "",
         "",
         "— Wilfredo Casas",
         SITE
@@ -77,7 +77,7 @@ const T = {
         "  3. Eine letzte E-Mail 3 Tage vor Kampagnenende.",
         "",
         "Zu deinen Daten: Deine E-Mail-Adresse wird sicher gespeichert, nur über verschlüsselte Verbindungen übertragen, niemals weitergegeben oder verkauft und für nichts anderes als diese drei E-Mails verwendet. Antworte jederzeit mit \"löschen\" und sie ist weg.",
-        hasAddress ? "\nDa du deine Adresse hinterlassen hast, erreicht dich im Oktober eine handgeschriebene Notiz aus Peru." : "",
+        hasAddress ? "\nDa du deine Adresse hinterlassen hast, erreicht dich kurz vor dem Start eine handgeschriebene Notiz." : "",
         "",
         "— Wilfredo Casas",
         SITE
@@ -96,7 +96,7 @@ const T = {
         "  3. Последнее письмо за 3 дня до конца кампании.",
         "",
         "О твоих данных: адрес хранится надёжно, передаётся только по зашифрованным соединениям, никогда не передаётся третьим лицам и не продаётся, и не используется ни для чего, кроме этих трёх писем. Ответь \"удалить\" в любой момент — и его не станет.",
-        hasAddress ? "\nТак как ты оставил адрес, в октябре тебе придёт записка из Перу, написанная от руки." : "",
+        hasAddress ? "\nТак как ты оставил адрес, незадолго до запуска тебе придёт записка, написанная от руки." : "",
         "",
         "— Вильфредо Касас (Wilfredo Casas)",
         SITE
@@ -115,7 +115,7 @@ const T = {
         "  3. Апошні ліст за 3 дні да канца кампаніі.",
         "",
         "Пра твае даныя: адрас захоўваецца надзейна, перадаецца толькі па зашыфраваных злучэннях, ніколі не перадаецца трэцім асобам і не прадаецца, і не выкарыстоўваецца ні для чаго, акрамя гэтых трох лістоў. Адкажы \"выдаліць\" у любы момант — і яго не стане.",
-        hasAddress ? "\nПаколькі ты пакінуў адрас, у кастрычніку табе прыйдзе запіска з Перу, напісаная ад рукі." : "",
+        hasAddress ? "\nПаколькі ты пакінуў адрас, незадоўга да запуску табе прыйдзе запіска ад рукі." : "",
         "",
         "— Wilfredo Casas",
         SITE
@@ -203,8 +203,10 @@ exports.handler = async function (event) {
     (data["addr-street"] || "").trim() || (data["addr-city"] || "").trim() || (data.address || "").trim()
   );
 
+  var transporter = makeTransporter();
+
   try {
-    await makeTransporter().sendMail({
+    await transporter.sendMail({
       from: '"' + (process.env.SENDER_NAME || "Wilfredo Casas") + '" <' + process.env.EMAIL_ADDRESS + ">",
       to: email,
       subject: t.subject,
@@ -213,6 +215,31 @@ exports.handler = async function (event) {
   } catch (e) {
     console.error("confirmation email failed:", e.message);
     return { statusCode: 500, body: "email failed" };
+  }
+
+  // Heads-up to Wilfredo about the new subscriber (never blocks the flow).
+  try {
+    var addressLines = ["addr-street", "addr-city", "addr-region", "addr-postal", "addr-country"]
+      .map(function (k) { return (data[k] || "").trim(); })
+      .filter(Boolean)
+      .join(", ");
+    await transporter.sendMail({
+      from: '"Ayakucho Landing" <' + process.env.EMAIL_ADDRESS + ">",
+      to: process.env.EMAIL_ADDRESS,
+      subject: "🌱 New subscriber: " + email,
+      text: [
+        "Someone joined the Ayakucho waiting list:",
+        "",
+        "Email:       " + email,
+        "Referred by: " + ((data["heard-from"] || "").trim() || "(nobody / left blank)"),
+        "Language:    " + lang,
+        "Address:     " + (addressLines || "(none — no handwritten note)"),
+        "",
+        "All submissions: https://app.netlify.com/projects/ayakucho/forms"
+      ].join("\n")
+    });
+  } catch (e) {
+    console.error("subscriber notification failed:", e.message);
   }
 
   return { statusCode: 200, body: "ok" };

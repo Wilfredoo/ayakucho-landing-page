@@ -9,7 +9,7 @@
   <!-- Open Graph (uses placeholder image for now) -->
   <meta property="og:title" content="Ayakucho — A social deduction game from the heart of Peru" />
   <meta property="og:description" content="A social deduction board game rooted in Peruvian folklore. Launching October 10, 2026." />
-  <meta property="og:image" content="placeholder.jpg" />
+  <meta property="og:image" content="https://ayakucho.com/img/slide-1.jpg" />
   <meta property="og:type" content="website" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -154,14 +154,15 @@
             </span>
           </label>
           <p class="field__hint" data-i18n="giftNote">The 3 people who share this page the most will each receive a personal gift I'll bring back from Peru when I return in October.</p>
+          <p class="field__hint leaders" data-leaders hidden><span data-i18n="leaders">Top sharers right now:</span> <strong data-leaders-names></strong></p>
 
           <button class="toggle-link" type="button" data-address-toggle aria-expanded="false" aria-controls="address-region">
             <span class="toggle-link__icon" aria-hidden="true">+</span>
-            <span data-i18n="addrToggle">Want a handwritten note from Peru? Add your address</span>
+            <span data-i18n="addrToggle">Want a handwritten note? Add your address</span>
           </button>
 
           <div class="address-region" id="address-region" data-address-region hidden>
-            <p class="field__hint field__hint--top" data-i18n="addrNote">You'll receive a note handwritten by me during October.</p>
+            <p class="field__hint field__hint--top" data-i18n="addrNote">You'll receive one shortly before launch.</p>
             <div class="addr-grid">
               <label class="field addr-full">
                 <span class="field__label" data-i18n="street">Street and number</span>
@@ -263,11 +264,16 @@
         <button class="creator__btn" type="button" data-creator-toggle aria-expanded="false">
           <span class="creator__name">Wilfredo Casas</span>
           <span class="creator__role" data-i18n="roleWilfredo">Game design &amp; code</span>
-          <span class="creator__icon" aria-hidden="true">+</span>
+          <span class="creator__icon" aria-hidden="true">&#9662;</span>
         </button>
         <div class="creator__panel" data-creator-panel hidden>
           <img class="creator__photo" src="img/creator-wilfredo.jpg" alt="Portrait of Wilfredo Casas" />
-          <p class="creator__bio" data-i18n="bioWilfredo">Game designer. A nomad from Peru, based nowhere.</p>
+          <div class="creator__info">
+            <p class="creator__bio" data-i18n="bioWilfredo">Game designer from Peru, based in Berlin, sometimes travelling around.</p>
+            <button class="creator__contact" type="button" data-copy-email="inbox@wilfredocasas.com">
+              <span data-i18n="getInTouch">Get in touch</span>
+            </button>
+          </div>
         </div>
       </article>
 
@@ -275,11 +281,14 @@
         <button class="creator__btn" type="button" data-creator-toggle aria-expanded="false">
           <span class="creator__name">Mariya Stankevich</span>
           <span class="creator__role" data-i18n="roleMariya">Lead artist</span>
-          <span class="creator__icon" aria-hidden="true">+</span>
+          <span class="creator__icon" aria-hidden="true">&#9662;</span>
         </button>
         <div class="creator__panel" data-creator-panel hidden>
           <img class="creator__photo" src="img/creator-mariya.jpg" alt="Portrait of Mariya Stankevich" />
-          <p class="creator__bio" data-i18n="bioMariya">Lead artist from Belarus, based in Lisbon. The world of Ayakucho — its characters, cards and board — is painted by her.</p>
+          <div class="creator__info">
+            <p class="creator__bio" data-i18n="bioMariya">Lead artist from Belarus, based in Lisbon. The world of Ayakucho — its characters, cards and board — is painted by her.</p>
+            <a class="creator__contact" href="https://www.instagram.com/ma.stak/" target="_blank" rel="noopener" data-i18n="getInTouch">Get in touch</a>
+          </div>
         </div>
       </article>
 
@@ -287,7 +296,7 @@
         <button class="creator__btn" type="button" data-creator-toggle aria-expanded="false">
           <span class="creator__name">Maja Ola</span>
           <span class="creator__role" data-i18n="roleMaja">Additional art</span>
-          <span class="creator__icon" aria-hidden="true">+</span>
+          <span class="creator__icon" aria-hidden="true">&#9662;</span>
         </button>
         <div class="creator__panel" data-creator-panel hidden>
           <img class="creator__photo" src="img/creator-maja.jpg" alt="Portrait of Maja Ola" />
@@ -295,7 +304,7 @@
         </div>
       </article>
 
-      <p class="creators__note" data-i18n="aiFree">Apart from translations and proofreading, everything here is 100% AI-free: all the art, the game mechanics and three years of development are the work of these humans.</p>
+      <p class="creators__note" data-i18n="aiFree">The game is 100% AI-free: all the art, the game mechanics and three years of development are entirely the work of these humans. (This website and its translations are where the robots were allowed to lend a hand.)</p>
     </section>
   </main>
 
@@ -307,6 +316,7 @@
     <nav class="footer__links" aria-label="Social and campaign links">
       <a href="https://www.instagram.com/ayakuchogamelab/" target="_blank" rel="noopener" class="footer__link">Instagram</a>
       <a href="#" class="footer__link">Kickstarter</a>
+      <a href="privacy.html" class="footer__link footer__link--muted" data-i18n="privacyLink">Privacy &amp; Imprint</a>
     </nav>
   </footer>
 

@@ -2,6 +2,9 @@
   "name": "ayakucho-landing",
   "private": true,
   "version": "1.0.0",
+  "scripts": {
+    "start": "python3 -m http.server 8000 --directory public"
+  },
   "description": "Ayakucho pre-launch landing page",
   "dependencies": {
     "@netlify/blobs": "^8.1.0",

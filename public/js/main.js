@@ -99,12 +99,29 @@
     });
   }
 
-  /* ---------- 3. "Who shared this?" suggestions dropdown ---------- */
-  // Opens on focus/click with the most frequent past answers; filters as
-  // you type; click a name to fill the input.
+  /* ---------- 3. "Who shared this?" suggestions + leaderboard ---------- */
+  // The endpoint returns [{name, count}] sorted by count. The top 2 feed
+  // the public leaderboard; all of them feed the input's dropdown, which
+  // opens on focus/click and filters as you type.
   var heardInput = document.querySelector("[data-heard-input]");
   var suggestBox = document.querySelector("[data-suggest]");
-  var suggestions = null; // null = not fetched yet
+  var suggestions = [];
+
+  fetch("/.netlify/functions/referrer-suggestions")
+    .then(function (r) { return r.ok ? r.json() : []; })
+    .then(function (entries) {
+      entries = entries || [];
+      suggestions = entries.map(function (e) { return e.name; });
+      var leadersWrap = document.querySelector("[data-leaders]");
+      var leadersNames = document.querySelector("[data-leaders-names]");
+      if (leadersWrap && leadersNames && entries.length) {
+        leadersNames.textContent = entries.slice(0, 2).map(function (e) {
+          return e.name + " (" + e.count + ")";
+        }).join(" · ");
+        leadersWrap.hidden = false;
+      }
+    })
+    .catch(function () { /* no suggestions locally — fine */ });
 
   function renderSuggest() {
     if (!suggestions || !suggestions.length) { suggestBox.hidden = true; return; }
@@ -131,17 +148,7 @@
   }
 
   if (heardInput && suggestBox) {
-    heardInput.addEventListener("focus", function () {
-      if (suggestions === null) {
-        suggestions = []; // don't refetch while in flight
-        fetch("/.netlify/functions/referrer-suggestions")
-          .then(function (r) { return r.ok ? r.json() : []; })
-          .then(function (names) { suggestions = names || []; renderSuggest(); })
-          .catch(function () { /* no suggestions locally — fine */ });
-      } else {
-        renderSuggest();
-      }
-    });
+    heardInput.addEventListener("focus", renderSuggest);
     heardInput.addEventListener("input", renderSuggest);
     heardInput.addEventListener("blur", function () {
       setTimeout(function () { suggestBox.hidden = true; }, 150);
@@ -245,6 +252,31 @@
       var open = btn.getAttribute("aria-expanded") === "true";
       btn.setAttribute("aria-expanded", String(!open));
       panel.hidden = open;
+    });
+  });
+
+  // "Get in touch" that copies an email address to the clipboard.
+  document.querySelectorAll("[data-copy-email]").forEach(function (btn) {
+    var label = btn.querySelector("[data-i18n]");
+    btn.addEventListener("click", function () {
+      var email = btn.getAttribute("data-copy-email");
+      function feedback() {
+        if (!label) return;
+        label.textContent = t("copied", "Email copied!");
+        setTimeout(function () { label.textContent = t("getInTouch", "Get in touch"); }, 2000);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(feedback).catch(feedback);
+      } else {
+        // Ancient-browser fallback
+        var tmp = document.createElement("textarea");
+        tmp.value = email;
+        document.body.appendChild(tmp);
+        tmp.select();
+        try { document.execCommand("copy"); } catch (e) { /* ignore */ }
+        document.body.removeChild(tmp);
+        feedback();
+      }
     });
   });
 })();
