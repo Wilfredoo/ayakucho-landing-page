@@ -48,7 +48,7 @@ All go in `public/img/`, exact names:
 |---|---|
 | `slide-1.jpg` … `slide-5.jpg` | 5 hero carousel photos, 16:9, ~1600×900 |
 | `creator-wilfredo.jpg` | Wilfredo portrait, square, ~600×600 |
-| `creator-mariya.jpg` | Mariya Stankevich portrait, square |
+| `creator-mariya.jpg` | Maryia Stankevich portrait, square |
 | `creator-maja.jpg` | Maja Ola portrait, square |
 
 After dropping them in: update the carousel `alt` texts in index.html if
