@@ -107,9 +107,11 @@
   var suggestBox = document.querySelector("[data-suggest]");
   var suggestions = [];
 
-  // On localhost there's no functions runtime — use the live endpoint.
-  var SUGGEST_URL = (location.hostname === "localhost" || location.hostname === "127.0.0.1")
-    ? "https://ayakucho.com/.netlify/functions/referrer-suggestions"
+  // On localhost there's no functions runtime — use the live endpoint,
+  // cache-busted so dev always sees fresh data.
+  var isLocal = location.hostname === "localhost" || location.hostname === "127.0.0.1";
+  var SUGGEST_URL = isLocal
+    ? "https://ayakucho.com/.netlify/functions/referrer-suggestions?dev=" + Date.now()
     : "/.netlify/functions/referrer-suggestions";
 
   fetch(SUGGEST_URL)
