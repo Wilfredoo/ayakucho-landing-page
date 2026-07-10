@@ -197,7 +197,8 @@
       if (!open) {
         if (!videoRegion.querySelector("iframe")) {
           var iframe = document.createElement("iframe");
-          iframe.src = "https://www.youtube.com/watch?v=KSrXyIQeAUo"; 
+          // Must be the /embed/ URL — watch?v= pages refuse to load in iframes.
+          iframe.src = "https://www.youtube.com/embed/KSrXyIQeAUo";
           iframe.title = "Ayakucho — how to play in 60 seconds";
           iframe.allow = "accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
           iframe.allowFullscreen = true;

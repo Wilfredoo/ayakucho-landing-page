@@ -18,14 +18,48 @@ netlify/functions/
 netlify.toml         publish + functions dirs
 ```
 
+## Run locally
+Quick look (static only — forms/suggestions won't hit the backend):
+```
+cd ~/Desktop/projects/ayakucho-landing
+python3 -m http.server 8000 --directory public
+```
+→ open http://localhost:8000
+
+Full local environment (functions work, uses real env vars — submitting
+the form WILL send a real email):
+```
+cd ~/Desktop/projects/ayakucho-landing
+netlify dev
+```
+→ open http://localhost:8888
+
+Preview the con section any day: add `?con=1` to the URL (`?con=0` hides it).
+
 ## Deploy
-From this folder: `netlify deploy --prod` (site is linked; no git repo).
+Push to GitHub `main` → Netlify builds and deploys automatically (once the
+repo is linked in Netlify UI). Manual fallback from this folder:
+`netlify deploy --prod`
 
 ## Images
-Drop 5 files into `public/img/` named exactly:
-`slide-1.jpg` `slide-2.jpg` `slide-3.jpg` `slide-4.jpg` `slide-5.jpg`
-16:9, ~1600×900 recommended. Update the `alt` texts in index.html to match,
-then deploy. Also swap the `og:image` meta for a real share image.
+All go in `public/img/`, exact names:
+
+| File | What |
+|---|---|
+| `slide-1.jpg` … `slide-5.jpg` | 5 hero carousel photos, 16:9, ~1600×900 |
+| `creator-wilfredo.jpg` | Wilfredo portrait, square, ~600×600 |
+| `creator-mariya.jpg` | Mariya Stankevich portrait, square |
+| `creator-maja.jpg` | Maja Ola portrait, square |
+
+After dropping them in: update the carousel `alt` texts in index.html if
+needed, then commit + push (or `netlify deploy --prod`). Also swap the
+`og:image` meta for a real share image someday.
+
+## Con mode (Brettspiel Berlin)
+The playtest-booking card auto-shows on 2026-07-11 and 2026-07-12
+(Europe/Berlin), configured in `CON_DAYS` in `public/js/main.js`.
+Bookings arrive as Netlify Form "con-playtest" AND as an instant email
+to inbox@wilfredocasas.com with the person's WhatsApp number.
 
 ## Video
 Replace the placeholder YouTube ID `dQw4w9WgXcQ` in `public/js/main.js`.
