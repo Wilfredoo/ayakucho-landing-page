@@ -468,6 +468,15 @@ textarea.field__input { resize: vertical; }
 .faq__more { margin-top: 14px; color: var(--muted); }
 .faq__more p { margin: 0; }
 
+.faq__a a,
+.faq__more a,
+.creator__bio a {
+  color: var(--red-dark);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .faq__btn {
   display: inline-flex;
   align-items: center;
@@ -568,6 +577,7 @@ textarea.field__input { resize: vertical; }
 }
 .creator__info { flex: 1; }
 .creator__bio { margin: 0; font-size: 0.95rem; }
+.creator__track { margin-top: 10px; font-size: 0.88rem; color: var(--muted); }
 
 .creator__contact {
   display: inline-block;
