@@ -14,7 +14,8 @@ function titleCase(s) {
 exports.handler = async function (event) {
   var headers = {
     "content-type": "application/json",
-    "cache-control": "public, max-age=300"
+    "cache-control": "public, max-age=300",
+    "access-control-allow-origin": "*" // public data; lets localhost dev fetch it
   };
   try {
     connectLambda(event); // required in Lambda-compat functions before getStore

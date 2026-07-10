@@ -107,7 +107,12 @@
   var suggestBox = document.querySelector("[data-suggest]");
   var suggestions = [];
 
-  fetch("/.netlify/functions/referrer-suggestions")
+  // On localhost there's no functions runtime — use the live endpoint.
+  var SUGGEST_URL = (location.hostname === "localhost" || location.hostname === "127.0.0.1")
+    ? "https://ayakucho.com/.netlify/functions/referrer-suggestions"
+    : "/.netlify/functions/referrer-suggestions";
+
+  fetch(SUGGEST_URL)
     .then(function (r) { return r.ok ? r.json() : []; })
     .then(function (entries) {
       entries = entries || [];
