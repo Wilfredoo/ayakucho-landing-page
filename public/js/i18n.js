@@ -33,7 +33,7 @@
       submit: "Notify me on launch",
       smallprint: "You'll receive exactly 3 emails: a confirmation right now, a reminder 3 days before the campaign starts, and one final email 3 days before it ends. Your email is stored securely, transmitted encrypted, never shared or sold, and deleted on request.",
       success: "You're on the list — a confirmation email is on its way. See you October 10! 🎉",
-      videoLabel: "Watch a game in 60 seconds",
+      videoLabel: "Watch a 30 second teaser",
       faq1q: "What is this game about?",
       faq1a: "A village in the Peruvian Andes, plagued by demons who walk among its people — and the demons are you and your friends. Everyone gets a hidden role, votes are cast in secret, and nobody is ever quite sure who to trust. A round takes about 25 minutes.",
       faq1more: "Ayakucho has a predecessor: " + BGG + ", born during the Covid years and sold to a British publisher in 2022. Seeing its potential unfulfilled, Wilfredo bought the license back in 2023, partnered up with Maryia, and started over. Three years of design and testing around Europe later, the game is finally ready.",
