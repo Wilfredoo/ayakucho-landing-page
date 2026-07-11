@@ -62,20 +62,76 @@ body { padding-top: 44px; }
   text-transform: uppercase;
   text-align: center;
 }
-.lang-select {
-  flex: 0 0 auto;
-  min-height: 36px;
+.lang-menu { position: relative; flex: 0 0 auto; }
+
+.lang-menu__btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 38px;
   background: var(--red-dark);
   color: var(--cream);
   border: 2px solid var(--cream);
-  border-radius: 6px;
-  padding: 5px 8px;
+  border-radius: 8px;
+  padding: 6px 12px;
   font-family: var(--sans);
   font-size: 0.9rem;
   font-weight: 600;
+  letter-spacing: 0.03em;
   cursor: pointer;
 }
-.lang-select:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.lang-menu__btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.lang-menu__globe { font-size: 1rem; line-height: 1; }
+.lang-menu__caret {
+  font-size: 0.7rem;
+  line-height: 1;
+  transition: transform 0.15s ease;
+}
+.lang-menu__btn[aria-expanded="true"] .lang-menu__caret { transform: rotate(180deg); }
+
+.lang-menu__list {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 60;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background: var(--parchment);
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  min-width: 176px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+.lang-menu__list li button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 9px 12px;
+  background: none;
+  border: none;
+  border-radius: 5px;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+}
+.lang-menu__list li button:hover { background: var(--red); color: var(--cream); }
+.lang-menu__list li button[aria-selected="true"] {
+  font-weight: 700;
+  background: var(--parchment-2);
+}
+.lang-menu__list li button[aria-selected="true"]::after {
+  content: "✓";
+  color: var(--red-dark);
+  margin-left: 10px;
+}
+.lang-menu__list li button[aria-selected="true"]:hover { background: var(--red); color: var(--cream); }
+.lang-menu__list li button[aria-selected="true"]:hover::after { color: var(--cream); }
+[dir="rtl"] .lang-menu__list { right: auto; left: 0; }
 
 @media (max-width: 600px) {
   body { padding-top: 48px; }
@@ -84,7 +140,7 @@ body { padding-top: 44px; }
     letter-spacing: 0.05em;
     text-align: left;
   }
-  .lang-select { font-size: 1rem; min-height: 40px; padding: 6px 10px; }
+  .lang-menu__btn { min-height: 42px; font-size: 1rem; }
 }
 
 .section {

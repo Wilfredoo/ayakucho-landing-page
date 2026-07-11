@@ -46,9 +46,23 @@
       if (e.key === "ArrowRight") { go(index + 1); }
     });
 
+    // Slides 2–5 carry data-src so slide 1 gets the whole pipe first.
+    // They load once the page is done, or the moment someone interacts.
+    function loadDeferredSlides() {
+      root.querySelectorAll("img[data-src]").forEach(function (img) {
+        img.src = img.getAttribute("data-src");
+        img.removeAttribute("data-src");
+      });
+    }
+    window.addEventListener("load", loadDeferredSlides, { once: true });
+    [prev, next, dotsWrap].forEach(function (el) {
+      el.addEventListener("pointerdown", loadDeferredSlides, { once: true });
+    });
+
     var startX = 0, dragging = false;
     var viewport = root.querySelector("[data-carousel-viewport]");
     viewport.addEventListener("touchstart", function (e) {
+      loadDeferredSlides();
       startX = e.touches[0].clientX; dragging = true;
     }, { passive: true });
     viewport.addEventListener("touchend", function (e) {

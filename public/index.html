@@ -17,6 +17,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="css/styles.css" />
+  <!-- First slide gets full bandwidth priority; the rest load deferred. -->
+  <link rel="preload" as="image" href="img/slide-1.jpg" fetchpriority="high" />
 </head>
 <body>
 
@@ -54,23 +56,23 @@
         <ul class="carousel__track" data-carousel-track>
           <li class="slide" role="group" aria-roledescription="slide" aria-label="1 of 5">
             <span class="slide__ghost">Slide 1</span>
-            <img src="img/slide-1.jpg" alt="The Ayakucho game box and board laid out on a table, ready to play" />
+            <img src="img/slide-1.jpg" fetchpriority="high" alt="The Ayakucho game box and board laid out on a table, ready to play" />
           </li>
           <li class="slide" role="group" aria-roledescription="slide" aria-label="2 of 5">
             <span class="slide__ghost">Slide 2</span>
-            <img src="img/slide-2.jpg" alt="Illustrated character cards depicting figures from Peruvian folklore" />
+            <img data-src="img/slide-2.jpg" alt="Illustrated character cards depicting figures from Peruvian folklore" />
           </li>
           <li class="slide" role="group" aria-roledescription="slide" aria-label="3 of 5">
             <span class="slide__ghost">Slide 3</span>
-            <img src="img/slide-3.jpg" alt="Friends gathered around a table mid-game, deep in discussion" />
+            <img data-src="img/slide-3.jpg" alt="Friends gathered around a table mid-game, deep in discussion" />
           </li>
           <li class="slide" role="group" aria-roledescription="slide" aria-label="4 of 5">
             <span class="slide__ghost">Slide 4</span>
-            <img src="img/slide-4.jpg" alt="Close-up of hand-painted Andean artwork on a game card" />
+            <img data-src="img/slide-4.jpg" alt="Close-up of hand-painted Andean artwork on a game card" />
           </li>
           <li class="slide" role="group" aria-roledescription="slide" aria-label="5 of 5">
             <span class="slide__ghost">Slide 5</span>
-            <img src="img/slide-5.jpg" alt="The full set of game components arranged in a fan" />
+            <img data-src="img/slide-5.jpg" alt="The full set of game components arranged in a fan" />
           </li>
         </ul>
       </div>
@@ -220,7 +222,7 @@
           <span class="video-card__play" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
           </span>
-          <span class="video-card__label" id="video-title" data-i18n="videoLabel">Watch a 30-second teaser</span>
+          <span class="video-card__label" id="video-title" data-i18n="videoLabel">Watch a 30 second teaser</span>
         </button>
         <div class="video-card__region" id="video-region" data-video-region hidden></div>
       </div>
@@ -249,7 +251,7 @@
 
       <article class="faq" data-faq>
         <h2 class="faq__q" data-i18n="faq3q">Where can I get it?</h2>
-        <p class="faq__a" data-i18n-html="faq3a">Back it on Kickstarter when the campaign launches on October 10, 2026. If it funds, the game reaches your door by the end of January 2027 — and not a day later. Wilfredo, the guy behind this game, always keeps his word: his previous game, <a href="https://www.kickstarter.com/projects/bamberg/bamberg-a-thrilling-game-of-social-deduction" target="_blank" rel="noopener">Bamberg</a>, was funded on Kickstarter and delivered to 125 backers around the world.</p>
+        <p class="faq__a" data-i18n-html="faq3a">Back it on Kickstarter when the campaign launches on October 10, 2026. If it funds, the game reaches your door by the end of January 2027 — and not a day later. Wilfredo, the guy behind this game, always keeps his word: his first game, <a href="https://www.kickstarter.com/projects/bamberg/bamberg-a-thrilling-game-of-social-deduction" target="_blank" rel="noopener">Bamberg</a>, was funded on Kickstarter and delivered to 125 backers around the world.</p>
       </article>
     </section>
 
@@ -261,14 +263,14 @@
 
       <article class="creator" data-creator>
         <button class="creator__btn" type="button" data-creator-toggle aria-expanded="false">
-          <img class="creator__avatar" src="img/creator-wilfredo.jpg" alt="Portrait of Wilfredo Casas" />
+          <img class="creator__avatar" loading="lazy" src="img/creator-wilfredo.jpg" alt="Portrait of Wilfredo Casas" />
           <span class="creator__name">Wilfredo Casas</span>
-          <span class="creator__role" data-i18n="roleWilfredo">Game design &amp; code</span>
+          <span class="creator__role" data-i18n="roleWilfredo">Game designer</span>
           <span class="creator__icon" aria-hidden="true">&#9662;</span>
         </button>
         <div class="creator__panel" data-creator-panel hidden>
           <p class="creator__bio" data-i18n="bioWilfredo">Game designer from Peru, based in Berlin, and often travelling around. He grew up among natives, supays and other spirits — a strange childhood that has served as inspiration for this game.</p>
-          <p class="creator__bio creator__track" data-i18n-html="trackRecord">His previous Kickstarter, <a href="https://www.kickstarter.com/projects/bamberg/bamberg-a-thrilling-game-of-social-deduction" target="_blank" rel="noopener">Bamberg</a>, was funded and delivered to 125 backers around the world.</p>
+          <p class="creator__bio creator__track" data-i18n-html="trackRecord">His first Kickstarter, <a href="https://www.kickstarter.com/projects/bamberg/bamberg-a-thrilling-game-of-social-deduction" target="_blank" rel="noopener">Bamberg</a>, was funded and delivered to 125 backers around the world.</p>
           <button class="creator__contact" type="button" data-copy-email="inbox@wilfredocasas.com">
             <span data-i18n="getInTouch">Get in touch</span>
           </button>
@@ -277,7 +279,7 @@
 
       <article class="creator" data-creator>
         <button class="creator__btn" type="button" data-creator-toggle aria-expanded="false">
-          <img class="creator__avatar" src="img/creator-mariya.jpg" alt="Portrait of Maryia Stankevich" />
+          <img class="creator__avatar" loading="lazy" src="img/creator-mariya.jpg" alt="Portrait of Maryia Stankevich" />
           <span class="creator__name">Maryia Stankevich</span>
           <span class="creator__role" data-i18n="roleMaryia">Lead artist</span>
           <span class="creator__icon" aria-hidden="true">&#9662;</span>
@@ -290,7 +292,7 @@
 
       <article class="creator" data-creator>
         <button class="creator__btn" type="button" data-creator-toggle aria-expanded="false">
-          <img class="creator__avatar" src="img/creator-maja.jpg" alt="Portrait of Maja Ola" />
+          <img class="creator__avatar" loading="lazy" src="img/creator-maja.jpg" alt="Portrait of Maja Ola" />
           <span class="creator__name">Maja Ola</span>
           <span class="creator__role" data-i18n="roleMaja">Additional art</span>
           <span class="creator__icon" aria-hidden="true">&#9662;</span>
