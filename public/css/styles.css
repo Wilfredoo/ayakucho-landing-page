@@ -280,6 +280,27 @@ body { padding-top: 44px; }
   color: var(--ink);
 }
 
+/* ---------- quick-facts strip under the headline ---------- */
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  list-style: none;
+  margin: 26px 0 0;
+  padding: 0;
+}
+.stats__item {
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  padding: 7px 16px;
+  background: var(--parchment-2);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
 /* ============ 2. EMAIL CAPTURE ============ */
 .section--capture { padding-top: 44px; padding-bottom: 44px; }
 
