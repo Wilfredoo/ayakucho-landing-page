@@ -121,6 +121,139 @@ const T = {
         SITE
       ].join("\n");
     }
+  },
+  fr: {
+    subject: "Tu es sur la liste — Ayakucho arrive le 10 octobre",
+    body: function (hasAddress) {
+      return [
+        "Merci de t'être inscrit pour Ayakucho — un jeu de déduction sociale venu du cœur du Pérou.",
+        "",
+        "Voici exactement ce que tu recevras. Trois e-mails, pas un de plus :",
+        "  1. Cette confirmation.",
+        "  2. Un rappel 3 jours avant le début de la campagne Kickstarter, le 10 octobre 2026.",
+        "  3. Un dernier e-mail 3 jours avant la fin de la campagne.",
+        "",
+        "Tes données : ton e-mail est stocké en sécurité, transmis uniquement chiffré, jamais partagé ni vendu, et utilisé pour rien d'autre que ces trois e-mails. Réponds « supprimer » à tout moment et il disparaît.",
+        hasAddress ? "\nComme tu as laissé ton adresse, un mot écrit à la main te parviendra peu avant le lancement." : "",
+        "",
+        "— Wilfredo Casas",
+        SITE
+      ].join("\n");
+    }
+  },
+  it: {
+    subject: "Sei in lista — Ayakucho arriva il 10 ottobre",
+    body: function (hasAddress) {
+      return [
+        "Grazie per esserti iscritto ad Ayakucho — un gioco di deduzione sociale dal cuore del Perù.",
+        "",
+        "Ecco esattamente cosa riceverai. Tre email, non una di più:",
+        "  1. Questa conferma.",
+        "  2. Un promemoria 3 giorni prima dell'inizio della campagna Kickstarter, il 10 ottobre 2026.",
+        "  3. Un'ultima email 3 giorni prima della fine.",
+        "",
+        "I tuoi dati: la tua email è conservata al sicuro, trasmessa solo cifrata, mai condivisa né venduta, e usata solo per queste tre email. Rispondi \"cancella\" in qualsiasi momento e sparisce.",
+        hasAddress ? "\nPoiché hai lasciato il tuo indirizzo, un biglietto scritto a mano ti arriverà poco prima del lancio." : "",
+        "",
+        "— Wilfredo Casas",
+        SITE
+      ].join("\n");
+    }
+  },
+  zh: {
+    subject: "你已加入名单 — Ayakucho 将于10月10日上线",
+    body: function (hasAddress) {
+      return [
+        "感谢你登记 Ayakucho —— 一款来自秘鲁腹地的社交推理游戏。",
+        "",
+        "你将收到的邮件如下，只有三封，绝不多发：",
+        "  1. 这封确认邮件。",
+        "  2. 众筹开始前3天的提醒（2026年10月10日开始）。",
+        "  3. 众筹结束前3天的最后一封。",
+        "",
+        "关于你的数据：邮箱被安全存储、仅加密传输，绝不共享或出售，除这三封邮件外不作任何用途。随时回复「删除」即可清除。",
+        hasAddress ? "\n你留下了地址，一张手写便条会在上线前不久寄到你手中。" : "",
+        "",
+        "— Wilfredo Casas",
+        SITE
+      ].join("\n");
+    }
+  },
+  ja: {
+    subject: "登録完了 — Ayakuchoは10月10日ローンチ",
+    body: function (hasAddress) {
+      return [
+        "Ayakuchoへのご登録ありがとうございます — ペルーの奥地から生まれたソーシャル・ディダクションゲームです。",
+        "",
+        "届くメールは以下の3通だけです：",
+        "  1. この確認メール。",
+        "  2. 2026年10月10日のKickstarterキャンペーン開始3日前のリマインダー。",
+        "  3. キャンペーン終了3日前の最後の1通。",
+        "",
+        "データについて：メールアドレスは安全に保管され、暗号化してのみ送信され、共有・販売は一切せず、この3通以外には使用しません。いつでも「削除」と返信すれば消去されます。",
+        hasAddress ? "\nご住所をいただいたので、手書きのメッセージがローンチの少し前に届きます。" : "",
+        "",
+        "— Wilfredo Casas",
+        SITE
+      ].join("\n");
+    }
+  },
+  ko: {
+    subject: "등록 완료 — Ayakucho는 10월 10일 출시됩니다",
+    body: function (hasAddress) {
+      return [
+        "Ayakucho 등록 감사합니다 — 페루의 심장부에서 온 소셜 추리 게임입니다.",
+        "",
+        "받게 될 이메일은 딱 3통입니다:",
+        "  1. 이 확인 메일.",
+        "  2. 2026년 10월 10일 Kickstarter 캠페인 시작 3일 전 리마인더.",
+        "  3. 캠페인 종료 3일 전 마지막 메일.",
+        "",
+        "데이터 안내: 이메일은 안전하게 보관되고 암호화되어서만 전송되며, 절대 공유·판매되지 않고 이 3통 외에는 사용되지 않습니다. 언제든 \"삭제\"라고 답장하면 지워집니다.",
+        hasAddress ? "\n주소를 남겨주셨으니 출시 직전에 손편지가 도착할 예정입니다." : "",
+        "",
+        "— Wilfredo Casas",
+        SITE
+      ].join("\n");
+    }
+  },
+  ar: {
+    subject: "أنت على القائمة — Ayakucho تنطلق في 10 أكتوبر",
+    body: function (hasAddress) {
+      return [
+        "شكراً لتسجيلك في Ayakucho — لعبة استنتاج اجتماعي من قلب بيرو.",
+        "",
+        "إليك ما ستستلمه بالضبط. ثلاث رسائل لا غير:",
+        "  1. هذا التأكيد.",
+        "  2. تذكير قبل ثلاثة أيام من بدء حملة كيك ستارتر في 10 أكتوبر 2026.",
+        "  3. رسالة أخيرة قبل ثلاثة أيام من انتهاء الحملة.",
+        "",
+        "بياناتك: بريدك محفوظ بأمان، يُنقل مشفراً فقط، لا يُشارك ولا يُباع، ولا يُستخدم لغير هذه الرسائل الثلاث. أرسل \"حذف\" في أي وقت وسيُمحى.",
+        hasAddress ? "\nبما أنك تركت عنوانك، ستصلك رسالة مكتوبة بخط اليد قبيل الإطلاق." : "",
+        "",
+        "— Wilfredo Casas",
+        SITE
+      ].join("\n");
+    }
+  },
+  qu: {
+    subject: "Listapiñam kachkanki — Ayakucho oktubre 10pi lluqsimunqa",
+    body: function (hasAddress) {
+      return [
+        "Añay Ayakuchoman qillqakusqaykimanta — huk pakay-tapuy pukllana Perúpa sunqunmanta.",
+        "",
+        "Kaykunallatam chaskinki. Kimsa correokunalla:",
+        "  1. Kay takyachiy.",
+        "  2. Huk yuyachiy, kimsa p'unchaw manaraq Kickstarter qallarichkaptin (2026 oktubre 10).",
+        "  3. Huknin kaq, kimsa p'unchaw manaraq tukukuchkaptin.",
+        "",
+        "Datoykikuna: correoykiqa allin waqaychasqam, cifrasqallam apachisqa, mana pimanpas qusqachu, mana rantikusqachu. \"Chinkachiy\" nispa kutichiy, hinaspa chinkanqa.",
+        hasAddress ? "\nDireccionniykita saqisqaykirayku, makiwan qillqasqa carta qallariy ñawpaqllata chayamusunki." : "",
+        "",
+        "— Wilfredo Casas",
+        SITE
+      ].join("\n");
+    }
   }
 };
 
@@ -204,7 +337,7 @@ exports.handler = async function (event) {
   // --- 2. confirmation email ---
   if (!email) return { statusCode: 200, body: "no email" };
 
-  var lang = ["en", "es", "pt", "de", "ru", "be"].indexOf(data.lang) !== -1 ? data.lang : "en";
+  var lang = ["en", "es", "pt", "de", "fr", "it", "ru", "be", "zh", "ja", "ko", "ar", "qu"].indexOf(data.lang) !== -1 ? data.lang : "en";
   var t = T[lang];
   var hasAddress = Boolean(
     (data["addr-street"] || "").trim() || (data["addr-city"] || "").trim() || (data.address || "").trim()

@@ -99,10 +99,10 @@
     });
   }
 
-  /* ---------- 3. "Who shared this?" suggestions + leaderboard ---------- */
-  // The endpoint returns [{name, count}] sorted by count. The top 2 feed
-  // the public leaderboard; all of them feed the input's dropdown, which
-  // opens on focus/click and filters as you type.
+  /* ---------- 3. "Who shared this?" suggestions with built-in tally ---------- */
+  // The endpoint returns [{name, count}] sorted by count desc. The dropdown
+  // shows them in that order with counts; the overall #1 gets a gold trophy
+  // and #2 a silver medal. Filters as you type; click fills the name.
   var heardInput = document.querySelector("[data-heard-input]");
   var suggestBox = document.querySelector("[data-suggest]");
   var suggestions = [];
@@ -116,42 +116,31 @@
 
   fetch(SUGGEST_URL)
     .then(function (r) { return r.ok ? r.json() : []; })
-    .then(function (entries) {
-      entries = entries || [];
-      suggestions = entries.map(function (e) { return e.name; });
-      var leadersWrap = document.querySelector("[data-leaders]");
-      var leadersNames = document.querySelector("[data-leaders-names]");
-      if (leadersWrap && leadersNames && entries.length) {
-        leadersNames.textContent = entries.slice(0, 2).map(function (e) {
-          return e.name + " (" + e.count + ")";
-        }).join(" · ");
-        leadersWrap.hidden = false;
-      }
-    })
-    .catch(function () { /* no suggestions locally — fine */ });
+    .then(function (entries) { suggestions = entries || []; })
+    .catch(function () { /* endpoint unreachable — no suggestions */ });
 
   function renderSuggest() {
-    if (!suggestions || !suggestions.length) { suggestBox.hidden = true; return; }
+    if (!suggestions.length) { suggestBox.hidden = true; return; }
     var q = heardInput.value.trim().toLowerCase();
-    var items = suggestions.filter(function (n) {
-      return !q || n.toLowerCase().indexOf(q) !== -1;
-    });
     suggestBox.innerHTML = "";
-    if (!items.length) { suggestBox.hidden = true; return; }
-    items.forEach(function (n) {
+    var shown = 0;
+    suggestions.forEach(function (entry, rank) {
+      if (q && entry.name.toLowerCase().indexOf(q) === -1) return;
+      var medal = rank === 0 ? "🏆 " : rank === 1 ? "🥈 " : "";
       var b = document.createElement("button");
       b.type = "button";
       b.className = "suggest__item";
-      b.textContent = n;
+      b.textContent = medal + entry.name + " (" + entry.count + ")";
       // mousedown (not click) so it fires before the input's blur hides the box
       b.addEventListener("mousedown", function (e) {
         e.preventDefault();
-        heardInput.value = n;
+        heardInput.value = entry.name;
         suggestBox.hidden = true;
       });
       suggestBox.appendChild(b);
+      shown++;
     });
-    suggestBox.hidden = false;
+    suggestBox.hidden = shown === 0;
   }
 
   if (heardInput && suggestBox) {

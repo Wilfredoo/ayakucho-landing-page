@@ -8,7 +8,7 @@ Kickstarter launch: **October 10, 2026**.
 public/              ← everything that gets served
   index.html         all markup, 5 sections + launch banner
   css/styles.css     theme + layout (palette variables at top)
-  js/i18n.js         translations: en / es / pt / de / ru / be (auto-detected)
+  js/i18n.js         translations: 13 languages incl. Quechua + Arabic RTL (auto-detected)
   js/main.js         carousel, toggles, form, FAQ, referrer suggestions
   img/               ← drop carousel images here
 netlify/functions/
