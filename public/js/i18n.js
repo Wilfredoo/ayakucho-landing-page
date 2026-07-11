@@ -691,6 +691,8 @@
   };
 
   var LANGS = ["en", "es", "pt", "de", "fr", "it", "ru", "be", "zh", "ja", "ko", "ar", "qu"];
+  // Short label shown on the closed language button.
+  var SHORT = { en: "EN", es: "ES", pt: "PT", de: "DE", fr: "FR", it: "IT", ru: "RU", be: "BE", zh: "中文", ja: "日本語", ko: "한국어", ar: "عربي", qu: "Runasimi" };
   var STORAGE_KEY = "ayk-lang";
   var current = "en";
 
@@ -737,17 +739,48 @@
     var langField = document.querySelector("[data-lang-field]");
     if (langField) langField.setAttribute("value", current);
 
-    var select = document.getElementById("lang-select");
-    if (select && select.value !== current) select.value = current;
+    var currentLabel = document.querySelector("[data-lang-current]");
+    if (currentLabel) currentLabel.textContent = SHORT[current] || current.toUpperCase();
+    document.querySelectorAll("[data-lang-list] [data-lang]").forEach(function (opt) {
+      opt.setAttribute("aria-selected", opt.getAttribute("data-lang") === current ? "true" : "false");
+    });
 
     document.dispatchEvent(new CustomEvent("ayk:lang"));
   }
 
   window.AYK = { t: t, get lang() { return current; }, setLang: apply };
 
-  var select = document.getElementById("lang-select");
-  if (select) {
-    select.addEventListener("change", function () { apply(select.value); });
+  /* ---- custom language menu (native selects can't be styled) ---- */
+  var menu = document.querySelector("[data-lang-menu]");
+  if (menu) {
+    var btn = menu.querySelector("[data-lang-btn]");
+    var list = menu.querySelector("[data-lang-list]");
+
+    function closeMenu() {
+      list.hidden = true;
+      btn.setAttribute("aria-expanded", "false");
+    }
+
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      var open = !list.hidden;
+      list.hidden = open;
+      btn.setAttribute("aria-expanded", String(!open));
+    });
+
+    list.querySelectorAll("[data-lang]").forEach(function (opt) {
+      opt.addEventListener("click", function () {
+        apply(opt.getAttribute("data-lang"));
+        closeMenu();
+      });
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!menu.contains(e.target)) closeMenu();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeMenu();
+    });
   }
 
   apply(detect());

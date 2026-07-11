@@ -23,21 +23,28 @@
   <!-- Persistent launch-date banner -->
   <div class="launch-banner">
     <span class="launch-banner__text" data-i18n="banner">Launching on Kickstarter · October 10, 2026</span>
-    <select class="lang-select" id="lang-select" aria-label="Language">
-      <option value="en">EN</option>
-      <option value="es">ES</option>
-      <option value="pt">PT</option>
-      <option value="de">DE</option>
-      <option value="fr">FR</option>
-      <option value="it">IT</option>
-      <option value="ru">RU</option>
-      <option value="be">BE</option>
-      <option value="zh">中文</option>
-      <option value="ja">日本語</option>
-      <option value="ko">한국어</option>
-      <option value="ar">عربي</option>
-      <option value="qu">Runasimi</option>
-    </select>
+    <div class="lang-menu" data-lang-menu>
+      <button class="lang-menu__btn" type="button" data-lang-btn aria-haspopup="listbox" aria-expanded="false" aria-label="Language">
+        <span class="lang-menu__globe" aria-hidden="true">&#127760;</span>
+        <span data-lang-current>EN</span>
+        <span class="lang-menu__caret" aria-hidden="true">&#9662;</span>
+      </button>
+      <ul class="lang-menu__list" data-lang-list role="listbox" aria-label="Language" hidden>
+        <li><button type="button" role="option" data-lang="en">English</button></li>
+        <li><button type="button" role="option" data-lang="es">Español</button></li>
+        <li><button type="button" role="option" data-lang="pt">Português</button></li>
+        <li><button type="button" role="option" data-lang="de">Deutsch</button></li>
+        <li><button type="button" role="option" data-lang="fr">Français</button></li>
+        <li><button type="button" role="option" data-lang="it">Italiano</button></li>
+        <li><button type="button" role="option" data-lang="ru">Русский</button></li>
+        <li><button type="button" role="option" data-lang="be">Беларуская</button></li>
+        <li><button type="button" role="option" data-lang="zh">中文</button></li>
+        <li><button type="button" role="option" data-lang="ja">日本語</button></li>
+        <li><button type="button" role="option" data-lang="ko">한국어</button></li>
+        <li><button type="button" role="option" data-lang="ar">العربية</button></li>
+        <li><button type="button" role="option" data-lang="qu">Runasimi</button></li>
+      </ul>
+    </div>
   </div>
 
   <!-- ============ 1. HERO CAROUSEL ============ -->
@@ -213,7 +220,7 @@
           <span class="video-card__play" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
           </span>
-          <span class="video-card__label" id="video-title" data-i18n="videoLabel">Watch a game in 60 seconds</span>
+          <span class="video-card__label" id="video-title" data-i18n="videoLabel">Watch a 30-second teaser</span>
         </button>
         <div class="video-card__region" id="video-region" data-video-region hidden></div>
       </div>
@@ -309,7 +316,7 @@
     </nav>
   </footer>
 
-  <script src="js/i18n.js?v=3"></script>
-  <script src="js/main.js?v=3"></script>
+  <script src="js/i18n.js?v=4"></script>
+  <script src="js/main.js?v=4"></script>
 </body>
 </html>
