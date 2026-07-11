@@ -75,9 +75,10 @@
     go(0);
   });
 
-  /* -------------------- 2. Con mode (Brettspiel Berlin) -------------------- */
-  // Auto-active on these days (Europe/Berlin). Force with ?con=1 / ?con=0.
-  var CON_DAYS = ["2026-07-11", "2026-07-12"];
+  /* -------------------- 2. Con mode -------------------- */
+  // Deactivated for now. To enable for a future convention, add its dates
+  // (Europe/Berlin) e.g. ["2026-08-15", "2026-08-16"]. Preview with ?con=1.
+  var CON_DAYS = [];
 
   function conActive() {
     var qs = new URLSearchParams(window.location.search);
