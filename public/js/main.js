@@ -141,11 +141,20 @@
     var shown = 0;
     suggestions.forEach(function (entry, rank) {
       if (q && entry.name.toLowerCase().indexOf(q) === -1) return;
-      var medal = rank === 0 ? "🏆 " : rank === 1 ? "🥈 " : "";
+      var medal = rank === 0 ? "🏆" : rank === 1 ? "🥈" : "";
       var b = document.createElement("button");
       b.type = "button";
       b.className = "suggest__item";
-      b.textContent = medal + entry.name + " (" + entry.count + ")";
+      // Name on the left, medal + count on the right, so the count reads
+      // as a tally rather than part of the typed name.
+      var nameEl = document.createElement("span");
+      nameEl.className = "suggest__name";
+      nameEl.textContent = entry.name;
+      var metaEl = document.createElement("span");
+      metaEl.className = "suggest__meta";
+      metaEl.textContent = (medal ? medal + " " : "") + entry.count;
+      b.appendChild(nameEl);
+      b.appendChild(metaEl);
       // mousedown (not click) so it fires before the input's blur hides the box
       b.addEventListener("mousedown", function (e) {
         e.preventDefault();

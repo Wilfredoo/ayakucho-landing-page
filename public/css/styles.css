@@ -383,6 +383,35 @@ textarea.field__input { resize: vertical; }
 }
 .field__hint--top { margin: 0 0 14px; }
 
+/* gift incentive — a warm callout that draws the eye */
+.gift-note {
+  display: flex;
+  gap: 11px;
+  align-items: flex-start;
+  margin: 0 0 18px;
+  padding: 12px 15px;
+  background: var(--parchment);
+  border: 2px solid var(--gold);
+  border-radius: 6px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.gift-note__icon {
+  flex: 0 0 auto;
+  font-size: 1.4rem;
+  line-height: 1.1;
+  transform-origin: 50% 90%;
+  animation: gift-wiggle 2.4s ease-in-out infinite;
+}
+@keyframes gift-wiggle {
+  0%, 60%, 100% { transform: rotate(0deg); }
+  70% { transform: rotate(-10deg); }
+  80% { transform: rotate(8deg); }
+  90% { transform: rotate(-4deg); }
+}
+
 .addr-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -478,9 +507,11 @@ textarea.field__input { resize: vertical; }
 }
 .suggest[hidden] { display: none; }
 .suggest__item {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
   width: 100%;
-  text-align: left;
   padding: 10px 13px;
   background: none;
   border: none;
@@ -489,10 +520,20 @@ textarea.field__input { resize: vertical; }
   font-size: 0.95rem;
   color: var(--ink);
   cursor: pointer;
+  text-align: left;
+}
+.suggest__name { text-align: left; }
+.suggest__meta {
+  flex: 0 0 auto;
+  color: var(--muted);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
 .suggest__item:last-child { border-bottom: none; }
 .suggest__item:hover,
 .suggest__item:focus-visible { background: var(--red); color: var(--cream); outline: none; }
+.suggest__item:hover .suggest__meta,
+.suggest__item:focus-visible .suggest__meta { color: var(--cream); }
 
 /* ============ 3. VIDEO TOGGLE ============ */
 .video-card {
@@ -748,6 +789,7 @@ textarea.field__input { resize: vertical; }
   .carousel__track { transition: none; }
   .toggle-link__icon,
   .faq__btn-icon { transition: none; }
+  .gift-note__icon { animation: none; }
 }
 
 /* ---------- small screens ---------- */
