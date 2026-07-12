@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="css/styles.css?v=6" />
+  <link rel="stylesheet" href="css/styles.css?v=7" />
   <!-- First slide gets full bandwidth priority; the rest load deferred. -->
   <link rel="preload" as="image" href="img/slide-1.jpg" fetchpriority="high" />
 </head>
@@ -179,11 +179,11 @@
 
           <button class="toggle-link" type="button" data-address-toggle aria-expanded="false" aria-controls="address-region">
             <span class="toggle-link__icon" aria-hidden="true">+</span>
-            <span data-i18n="addrToggle">Want a handwritten note? Add your address</span>
+            <span data-i18n="addrToggle">Want a handwritten note?</span>
           </button>
 
           <div class="address-region" id="address-region" data-address-region hidden>
-            <p class="field__hint field__hint--top" data-i18n="addrNote">You'll receive one shortly before launch.</p>
+            <p class="field__hint field__hint--top" data-i18n="addrNote">Add your address and you'll receive one shortly before launch.</p>
             <div class="addr-grid">
               <label class="field addr-full">
                 <span class="field__label" data-i18n="street">Street and number</span>
@@ -252,12 +252,19 @@
 
       <article class="faq" data-faq>
         <h2 class="faq__q" data-i18n="faq2q">How is this different from Werewolf, Blood on the Clocktower or Secret Hitler?</h2>
-        <p class="faq__a" data-i18n="faq2a">Three things. Anonymous voting: nobody sees who condemned whom, and that changes everything about how you bluff. Quick rounds: about 30 minutes each. And you don't need a crowd: the basic mode plays with just six, while the second mode — for 8 to 12 players — splits the table into three teams, a favorite among social deduction veterans.</p>
+        <div class="faq__a" data-i18n-html="faq2a"><ol><li><strong>Anonymous voting:</strong> nobody sees who condemned whom, and that changes everything about how you bluff.</li><li><strong>You don't need a crowd:</strong> game mode 1 plays with just six, so you can play more often. Time: 20 minutes.</li><li><strong>Complex mode for advanced players:</strong> game mode 2 — for 8 to 12 players — splits the table into three teams, a favorite among the veterans. Time: 40 minutes.</li></ol></div>
       </article>
 
       <article class="faq" data-faq>
         <h2 class="faq__q" data-i18n="faq3q">Where can I get it?</h2>
-        <p class="faq__a" data-i18n-html="faq3a">Back it on Kickstarter when the campaign launches on October 10, 2026. If it funds, the game reaches your door by the end of January 2027 — and not a day later. Wilfredo, the guy behind this game, always keeps his word: his first game, <a href="https://www.kickstarter.com/projects/bamberg/bamberg-a-thrilling-game-of-social-deduction" target="_blank" rel="noopener">Bamberg</a>, was funded on Kickstarter and delivered to 125 backers around the world.</p>
+        <p class="faq__a" data-i18n="faq3a">Back it on Kickstarter when the campaign launches on October 10, 2026.</p>
+        <div class="faq__more" data-faq-more hidden>
+          <p data-i18n-html="faq3more">If it funds, the game reaches your door by the end of January 2027 — and not a day later.<br><br>Wilfredo, the guy behind this game, always keeps his word: his first game, <a href="https://www.kickstarter.com/projects/bamberg/bamberg-a-thrilling-game-of-social-deduction" target="_blank" rel="noopener">Bamberg</a>, was funded on Kickstarter and delivered to 125 backers around the world.</p>
+        </div>
+        <button class="faq__btn" type="button" data-faq-toggle aria-expanded="false">
+          <span class="faq__btn-icon" aria-hidden="true">+</span>
+          <span data-faq-btn-label>More</span>
+        </button>
       </article>
     </section>
 
@@ -317,14 +324,15 @@
     <p class="footer__credit" data-i18n="footerCredit">Made by Wilfredo Casas · Art by Maryia Stankevich</p>
     <p class="footer__addl" data-i18n="footerAddl">Additional art by Maja Ola</p>
     <p class="footer__date" data-i18n="banner">Launching on Kickstarter · October 10, 2026</p>
+    <p class="footer__contact" data-i18n-html="footerContact">Questions? Wilfredo is the main contact for the game: <a href="mailto:inbox@wilfredocasas.com">inbox@wilfredocasas.com</a></p>
     <nav class="footer__links" aria-label="Social and campaign links">
       <a href="https://www.instagram.com/ayakuchogamelab/" target="_blank" rel="noopener" class="footer__link">Instagram</a>
-      <a href="#" class="footer__link">Kickstarter</a>
+      <span class="footer__link footer__link--soon" data-i18n="kickstarterSoon">Kickstarter (available soon)</span>
       <a href="privacy.html" class="footer__link footer__link--muted" data-i18n="privacyLink">Privacy &amp; Imprint</a>
     </nav>
   </footer>
 
-  <script src="js/i18n.js?v=6"></script>
-  <script src="js/main.js?v=6"></script>
+  <script src="js/i18n.js?v=7"></script>
+  <script src="js/main.js?v=7"></script>
 </body>
 </html>

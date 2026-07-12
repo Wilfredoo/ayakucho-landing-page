@@ -550,6 +550,16 @@ textarea.field__input { resize: vertical; }
   margin: 0 0 10px;
 }
 .faq__a { margin: 0; }
+.faq__a ol {
+  margin: 0;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.faq__a li { padding-left: 4px; }
+.faq__a li::marker { color: var(--red); font-weight: 700; }
+[dir="rtl"] .faq__a ol { padding-left: 0; padding-right: 1.25rem; }
 .faq__more { margin-top: 14px; color: var(--muted); }
 .faq__more p { margin: 0; }
 
@@ -719,6 +729,9 @@ textarea.field__input { resize: vertical; }
   text-transform: uppercase;
   color: var(--gold);
 }
+.footer__contact { margin: 0 0 16px; font-size: 0.9rem; }
+.footer__contact a { color: var(--gold); }
+.footer__link--soon { color: var(--cream); opacity: 0.55; cursor: default; }
 .footer__links { display: flex; gap: 24px; justify-content: center; }
 .footer__link {
   color: var(--gold);
