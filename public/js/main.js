@@ -49,6 +49,11 @@
     // Slides 2–5 carry data-src so slide 1 gets the whole pipe first.
     // They load once the page is done, or the moment someone interacts.
     function loadDeferredSlides() {
+      // Set <source srcset> before <img src> so the browser still picks WebP.
+      root.querySelectorAll("source[data-srcset]").forEach(function (s) {
+        s.srcset = s.getAttribute("data-srcset");
+        s.removeAttribute("data-srcset");
+      });
       root.querySelectorAll("img[data-src]").forEach(function (img) {
         img.src = img.getAttribute("data-src");
         img.removeAttribute("data-src");

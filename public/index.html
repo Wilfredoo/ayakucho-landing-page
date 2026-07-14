@@ -16,9 +16,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="css/styles.css?v=8" />
+  <link rel="stylesheet" href="css/styles.css?v=9" />
   <!-- First slide gets full bandwidth priority; the rest load deferred. -->
-  <link rel="preload" as="image" href="img/slide-1.jpg" fetchpriority="high" />
+  <link rel="preload" as="image" href="img/slide-1.webp" type="image/webp" fetchpriority="high" />
 </head>
 <body>
 
@@ -54,25 +54,35 @@
     <div class="carousel" data-carousel aria-roledescription="carousel" aria-label="Ayakucho game images">
       <div class="carousel__viewport" data-carousel-viewport>
         <ul class="carousel__track" data-carousel-track>
-          <li class="slide" role="group" aria-roledescription="slide" aria-label="1 of 5">
-            <span class="slide__ghost">Slide 1</span>
-            <img src="img/slide-1.jpg" fetchpriority="high" alt="The Ayakucho game box and board laid out on a table, ready to play" />
+          <li class="slide" role="group" aria-roledescription="slide" aria-label="1 of 5" style="background-image:url(data:image/webp;base64,UklGRq4AAABXRUJQVlA4IKIAAAAQBQCdASoYABEAPt1kp1AopSMiqAqpEBuJaAC7FQAAOtKmX2gV9oHNOin7mApf2VxAAP7xeJTSJnpHRzyXfPU8ZDNjcZ3aDF7Pjg1OEPzCidneAVwv4E1a6zNUYS5bdUVkZoOSRLzqQOD7E/pKAeXoRINGfZhNzYtfKtR4ILVdJAPis34eZkURwA1RXgbiLxWGjqyYWicnuZm6PkoAaEm3wAA=)">
+            <picture>
+              <source type="image/webp" srcset="img/slide-1.webp" />
+              <img src="img/slide-1.jpg" fetchpriority="high" alt="The Ayakucho game box and board laid out on a table, ready to play" />
+            </picture>
           </li>
-          <li class="slide" role="group" aria-roledescription="slide" aria-label="2 of 5">
-            <span class="slide__ghost">Slide 2</span>
-            <img data-src="img/slide-2.jpg" alt="Illustrated character cards depicting figures from Peruvian folklore" />
+          <li class="slide" role="group" aria-roledescription="slide" aria-label="2 of 5" style="background-image:url(data:image/webp;base64,UklGRugAAABXRUJQVlA4INwAAACQBQCdASoYABEAPt1kqU+opaOiKAqpEBuJYgCsMt8lvQwJ4eOkq/ZSF+ZPCF/38ZGuxoPtcAD+5ghvZ05L7RyLU+zIJ2rcxI3m6OpxcUf2mmqMbCgac/ThSqOML59Q5DrtoPqr/Uo2v9m4dIYs7/AzVEEEamIX1slHh9GTMicAHCdlE3ggNIE9Pj3eSwukAt/iBNbZoKc6YP2S3sCFAnZ2PPNIc9UTH/63xS8t85K8seMIEk75Vp54/vstf5/2MF6b8Dk2MhFRUUY/v86lBhsBdSfYvuHWy0d5YOAA)">
+            <picture>
+              <source type="image/webp" data-srcset="img/slide-2.webp" />
+              <img data-src="img/slide-2.jpg" alt="Illustrated character cards depicting figures from Peruvian folklore" />
+            </picture>
           </li>
-          <li class="slide" role="group" aria-roledescription="slide" aria-label="3 of 5">
-            <span class="slide__ghost">Slide 3</span>
-            <img data-src="img/slide-3.jpg" alt="Friends gathered around a table mid-game, deep in discussion" />
+          <li class="slide" role="group" aria-roledescription="slide" aria-label="3 of 5" style="background-image:url(data:image/webp;base64,UklGRuoAAABXRUJQVlA4IN4AAABwBQCdASoYABEAPt1eqE6opKOiMBgIARAbiWgAnTLNVlYCvwuHBEWp9MZk7T9e8hphHDvAAP7m8MuYSSPQ2MdmH/dgkYLgJQ71tsVj+AgeUyfWDIAiSnyQJ+gLzoJHihpgQ96yCowv7fFAXGdJspv6tpwihnY3SEtrhapXgf0bgNDEzIN+NCi6U3hslRvbQlrp8BpmZOy32jJweli3PojOL8TuhSzfocm2CO4RilTLgPPXGvQJMs7F4wIAxEItPdDs89NlUHjUEzgP166XADbK+gFkHLr1B3iHOVFQAAA=)">
+            <picture>
+              <source type="image/webp" data-srcset="img/slide-3.webp" />
+              <img data-src="img/slide-3.jpg" alt="Friends gathered around a table mid-game, deep in discussion" />
+            </picture>
           </li>
-          <li class="slide" role="group" aria-roledescription="slide" aria-label="4 of 5">
-            <span class="slide__ghost">Slide 4</span>
-            <img data-src="img/slide-4.jpg" alt="Close-up of hand-painted Andean artwork on a game card" />
+          <li class="slide" role="group" aria-roledescription="slide" aria-label="4 of 5" style="background-image:url(data:image/webp;base64,UklGRtYAAABXRUJQVlA4IMoAAABQBQCdASoYABEAPt1iqk+opSOiKAqpEBuJYgC7AywYbtogHe350HB20B87NNX5v3Z2UAAA+kdvbpu3yPsJ+uLe0YpB+gjENeTG/z4+efw3zstqHpXNuxWbd3XhYnZiPaGuQ05y3gHvcK1En0ieXsUEbItkbNmhNPNjEPpLpchuVS2cs+5DDfvkA0LNVPjEqtYcAsh03lsZtiVz3IMG+0D+r9bpJ6mLuydNOoyvNnGR6I6B6ZHBFpzdByo5yCw7JxsPQSQThB2AcAAA)">
+            <picture>
+              <source type="image/webp" data-srcset="img/slide-4.webp" />
+              <img data-src="img/slide-4.jpg" alt="Close-up of hand-painted Andean artwork on a game card" />
+            </picture>
           </li>
-          <li class="slide" role="group" aria-roledescription="slide" aria-label="5 of 5">
-            <span class="slide__ghost">Slide 5</span>
-            <img data-src="img/slide-5.jpg" alt="The full set of game components arranged in a fan" />
+          <li class="slide" role="group" aria-roledescription="slide" aria-label="5 of 5" style="background-image:url(data:image/webp;base64,UklGRuoAAABXRUJQVlA4IN4AAABwBQCdASoYABEAPt1eqE6opKOiMBgIARAbiWgAnTLNVlYCvwuHBEWp9MZk7T9e8hphHDvAAP7m8MuYSSPQ2MdmH/dgkYLgJQ71tsVj+AgeUyfWDIAiSnyQJ+gLzoJHihpgQ96yCowv7fFAXGdJspv6tpwihnY3SEtrhapXgf0bgNDEzIN+NCi6U3hslRvbQlrp8BpmZOy32jJweli3PojOL8TuhSzfocm2CO4RilTLgPPXGvQJMs7F4wIAxEItPdDs89NlUHjUEzgP166XADbK+gFkHLr1B3iHOVFQAAA=)">
+            <picture>
+              <source type="image/webp" data-srcset="img/slide-5.webp" />
+              <img data-src="img/slide-5.jpg" alt="The full set of game components arranged in a fan" />
+            </picture>
           </li>
         </ul>
       </div>
@@ -171,7 +181,7 @@
           <label class="field field--tight">
             <span class="field__label"><span data-i18n="heardLabel">Did someone share this page with you?</span> <span class="field__opt" data-i18n="optional">(optional)</span></span>
             <span class="suggest-wrap">
-              <input class="field__input" type="text" name="heard-from" autocomplete="off" placeholder="Daniel Ramos" data-heard-input />
+              <input class="field__input" type="text" name="heard-from" autocomplete="off" placeholder="e.g. Daniel Ramos" data-heard-input />
               <span class="suggest" data-suggest hidden></span>
             </span>
           </label>
@@ -255,7 +265,14 @@
 
       <article class="faq" data-faq>
         <h2 class="faq__q" data-i18n="faq2q">How is this different from Werewolf, Blood on the Clocktower or Secret Hitler?</h2>
-        <div class="faq__a" data-i18n-html="faq2a"><ol><li><strong>Anonymous voting:</strong> nobody sees who condemned whom, and that changes everything about how you bluff.</li><li><strong>You don't need a crowd:</strong> game mode 1 plays with just six, so you can play more often. Time: 20 minutes.</li><li><strong>Complex mode for advanced players:</strong> game mode 2 — for 8 to 12 players — splits the table into three teams, a favorite among the veterans. Time: 40 minutes.</li></ol></div>
+        <p class="faq__a" data-i18n-html="faq2a"><strong>Anonymous voting:</strong> nobody sees who condemned whom, and that changes everything about how you bluff.</p>
+        <div class="faq__more" data-faq-more hidden>
+          <div data-i18n-html="faq2more"><p><strong>You don't need a crowd:</strong> game mode 1 plays with just six, so you can play more often. Time: 20 minutes.</p><p><strong>Complex mode for advanced players:</strong> game mode 2 — for 8 to 12 players — splits the table into three teams, a favorite among the veterans. Time: 40 minutes.</p></div>
+        </div>
+        <button class="faq__btn" type="button" data-faq-toggle aria-expanded="false">
+          <span class="faq__btn-icon" aria-hidden="true">+</span>
+          <span data-faq-btn-label>More</span>
+        </button>
       </article>
 
       <article class="faq" data-faq>
@@ -335,7 +352,7 @@
     </nav>
   </footer>
 
-  <script src="js/i18n.js?v=8"></script>
-  <script src="js/main.js?v=8"></script>
+  <script src="js/i18n.js?v=9"></script>
+  <script src="js/main.js?v=9"></script>
 </body>
 </html>

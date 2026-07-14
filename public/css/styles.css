@@ -183,28 +183,15 @@ body { padding-top: 44px; }
   position: relative;
   flex: 0 0 100%;
   aspect-ratio: 16 / 9;
-  background: var(--parchment-2);
+  background-color: var(--parchment-2);
+  background-size: cover;
+  background-position: center;
   border-bottom: 3px solid var(--ink);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
 }
 
-/* Ghost label sits behind the img; a real placeholder.jpg covers it. */
-.slide__ghost {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--serif);
-  font-size: clamp(1.4rem, 5vw, 2.4rem);
-  letter-spacing: 0.04em;
-  color: var(--muted);
-  border: 2px dashed var(--line);
-}
-
+/* Full image sits on top of the blurred inline background until it loads. */
+.slide picture { display: block; width: 100%; height: 100%; }
 .slide img {
   position: relative;
   width: 100%;
@@ -340,6 +327,8 @@ body { padding-top: 44px; }
   padding: 12px 14px;
 }
 .field__input:focus { outline: none; border-color: var(--gold); }
+/* Signal that the referrer placeholder is an example, not a real entry. */
+[data-heard-input]::placeholder { font-style: italic; }
 textarea.field__input { resize: vertical; }
 
 .toggle-link {
@@ -603,6 +592,8 @@ textarea.field__input { resize: vertical; }
 [dir="rtl"] .faq__a ol { padding-left: 0; padding-right: 1.25rem; }
 .faq__more { margin-top: 14px; color: var(--muted); }
 .faq__more p { margin: 0; }
+.faq__more p + p { margin-top: 12px; }
+.faq__more strong { color: var(--ink); }
 
 .faq__a a,
 .faq__more a,
