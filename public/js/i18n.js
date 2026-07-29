@@ -77,7 +77,7 @@
     es: {
       banner: "Lanzamiento en Kickstarter · 10 de octubre de 2026",
       badge: "Lanzamiento: 10 de octubre de 2026",
-      headline: "Confianza, traición y folclore peruano.",
+      headline: "Intriga, traición y folclore peruano.",
       statPlayers: "6–12 jugadores",
       statTime: "30 min",
       statGenre: "Deducción social",
