@@ -1,9 +1,8 @@
 /* Runs automatically when Netlify Forms verifies a new submission.
-   1. Sends the confirmation email via Zoho SMTP (localized).
-   2. Updates the shared-by name counts used for input suggestions. */
+   Sends the confirmation email via Zoho SMTP (localized) and notifies
+   Wilfredo of the new subscriber. */
 
 const nodemailer = require("nodemailer");
-const { getStore, connectLambda } = require("@netlify/blobs");
 
 const SITE = "https://ayakucho.com";
 
@@ -257,14 +256,16 @@ const T = {
   }
 };
 
-// Normalize a "who shared this with you" value into a countable name.
-// Rejects anything that looks like an email, contains digits, or is too long.
-function cleanName(raw) {
-  if (!raw) return null;
-  var s = String(raw).trim().replace(/\s+/g, " ");
-  if (s.length < 2 || s.length > 30) return null;
-  if (/[@0-9<>{}\/\\]/.test(s)) return null;
-  return s;
+// Resolve the game-language choice into a readable label, expanding the
+// free-text value people type when they pick "Another language".
+function gameLanguageLabel(data) {
+  var choice = String(data["game-language"] || "").trim();
+  if (!choice) return "(not given)";
+  if (choice.toLowerCase() === "other") {
+    var custom = String(data["game-language-other"] || "").trim();
+    return custom ? custom + " (other)" : "another language (unspecified)";
+  }
+  return choice;
 }
 
 function makeTransporter() {
@@ -312,29 +313,7 @@ exports.handler = async function (event) {
   var data = p.data || {};
   var email = String(p.email || data.email || "").trim();
 
-  // --- 1. tally the sharer name for input suggestions (never blocks the email) ---
-  try {
-    var name = cleanName(data["heard-from"]);
-    if (name) {
-      connectLambda(event); // required in Lambda-compat functions before getStore
-      var store = getStore("referrers");
-      var key = name.toLowerCase();
-      // Conditional write with retry: concurrent submissions each re-read
-      // the latest counts instead of overwriting each other.
-      for (var attempt = 0; attempt < 4; attempt++) {
-        var got = await store.getWithMetadata("counts", { type: "json" });
-        var counts = (got && got.data) || {};
-        counts[key] = (counts[key] || 0) + 1;
-        var res = await store.setJSON("counts", counts,
-          got && got.etag ? { onlyIfMatch: got.etag } : { onlyIfNew: true });
-        if (!res || res.modified !== false) break; // written (or older lib without conditionals)
-      }
-    }
-  } catch (e) {
-    console.error("referrer tally failed:", e.message);
-  }
-
-  // --- 2. confirmation email ---
+  // --- confirmation email ---
   if (!email) return { statusCode: 200, body: "no email" };
 
   var lang = ["en", "es", "pt", "de", "fr", "it", "ru", "be", "zh", "ja", "ko", "ar", "qu"].indexOf(data.lang) !== -1 ? data.lang : "en";
@@ -370,9 +349,9 @@ exports.handler = async function (event) {
       text: [
         "Someone joined the Ayakucho waiting list:",
         "",
-        "Email:       " + email,
-        "Referred by: " + ((data["heard-from"] || "").trim() || "(nobody / left blank)"),
-        "Language:    " + lang,
+        "Email:         " + email,
+        "Game language: " + gameLanguageLabel(data),
+        "Page language: " + lang,
         "Address:     " + (addressLines || "(none — no handwritten note)"),
         "",
         "All submissions: https://app.netlify.com/projects/ayakucho/forms"

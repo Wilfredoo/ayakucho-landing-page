@@ -1,6 +1,6 @@
 /* ============================================================
    Ayakucho landing — vanilla JS, no dependencies.
-   Carousel · con mode · suggestions · email capture · video ·
+   Carousel · con mode · game-language · email capture · video ·
    FAQ · creators.
    ============================================================ */
 (function () {
@@ -119,74 +119,32 @@
     });
   }
 
-  /* ---------- 3. "Who shared this?" suggestions ---------- */
-  // The endpoint returns [{name, count}] sorted by count desc. The dropdown
-  // shows the names (most-active referrers first) purely as autocomplete for
-  // attribution. Filters as you type; click fills the name.
-  var heardInput = document.querySelector("[data-heard-input]");
-  var suggestBox = document.querySelector("[data-suggest]");
-  var suggestions = [];
-
-  // On localhost there's no functions runtime — use the live endpoint,
-  // cache-busted so dev always sees fresh data.
-  var isLocal = location.hostname === "localhost" || location.hostname === "127.0.0.1";
-  var SUGGEST_URL = isLocal
-    ? "https://ayakucho.com/.netlify/functions/referrer-suggestions?dev=" + Date.now()
-    : "/.netlify/functions/referrer-suggestions";
-
-  fetch(SUGGEST_URL)
-    .then(function (r) { return r.ok ? r.json() : []; })
-    .then(function (entries) { suggestions = entries || []; })
-    .catch(function () { /* endpoint unreachable — no suggestions */ });
-
-  function renderSuggest() {
-    if (!suggestions.length) { suggestBox.hidden = true; return; }
-    var q = heardInput.value.trim().toLowerCase();
-    suggestBox.innerHTML = "";
-    var shown = 0;
-    suggestions.forEach(function (entry) {
-      if (q && entry.name.toLowerCase().indexOf(q) === -1) return;
-      var b = document.createElement("button");
-      b.type = "button";
-      b.className = "suggest__item";
-      var nameEl = document.createElement("span");
-      nameEl.className = "suggest__name";
-      nameEl.textContent = entry.name;
-      b.appendChild(nameEl);
-      // mousedown (not click) so it fires before the input's blur hides the box
-      b.addEventListener("mousedown", function (e) {
-        e.preventDefault();
-        heardInput.value = entry.name;
-        suggestBox.hidden = true;
-      });
-      suggestBox.appendChild(b);
-      shown++;
-    });
-    suggestBox.hidden = shown === 0;
-  }
-
-  if (heardInput && suggestBox) {
-    heardInput.addEventListener("focus", renderSuggest);
-    heardInput.addEventListener("input", renderSuggest);
-    heardInput.addEventListener("blur", function () {
-      setTimeout(function () { suggestBox.hidden = true; }, 150);
-    });
-    heardInput.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") suggestBox.hidden = true;
-    });
-  }
-
-  /* -------------------- 4. Email capture -------------------- */
+  /* -------------------- 3. Game-language preference -------------------- */
   // Preselect the game-language the visitor most likely wants, based on the
-  // page language (the game ships in English, Spanish and German).
+  // page language (the game ships in English, Spanish and German). Picking
+  // "Another language" reveals a free-text field to name it.
   var gameLang = document.querySelector("[data-game-lang]");
+  var gameLangOtherWrap = document.querySelector("[data-game-lang-other-wrap]");
+  var gameLangOther = document.querySelector("[data-game-lang-other]");
   if (gameLang) {
     var GAME_LANG_BY_UI = { en: "English", es: "Español", de: "Deutsch" };
     var uiLang = window.AYK ? window.AYK.lang : "en";
     var preferred = GAME_LANG_BY_UI[uiLang];
     if (preferred) gameLang.value = preferred;
+
+    function syncGameLangOther() {
+      var isOther = gameLang.value === "other";
+      if (gameLangOtherWrap) gameLangOtherWrap.hidden = !isOther;
+      if (gameLangOther) {
+        gameLangOther.required = isOther;
+        if (!isOther) gameLangOther.value = "";
+        else gameLangOther.focus();
+      }
+    }
+    gameLang.addEventListener("change", syncGameLangOther);
   }
 
+  /* -------------------- 4. Email capture -------------------- */
   var addrToggle = document.querySelector("[data-address-toggle]");
   var addrRegion = document.querySelector("[data-address-region]");
   if (addrToggle && addrRegion) {
@@ -209,6 +167,8 @@
         form.reset();
         if (addrToggle) addrToggle.setAttribute("aria-expanded", "false");
         if (addrRegion) addrRegion.hidden = true;
+        if (gameLangOtherWrap) gameLangOtherWrap.hidden = true;
+        if (gameLangOther) gameLangOther.required = false;
       }
 
       fetch("/", {

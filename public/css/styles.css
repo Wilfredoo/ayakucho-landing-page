@@ -327,8 +327,6 @@ body { padding-top: 44px; }
   padding: 12px 14px;
 }
 .field__input:focus { outline: none; border-color: var(--gold); }
-/* Signal that the referrer placeholder is an example, not a real entry. */
-[data-heard-input]::placeholder { font-style: italic; }
 textarea.field__input { resize: vertical; }
 
 /* Native <select> styled to match the parchment inputs, with a custom caret. */
@@ -465,44 +463,6 @@ select.field__input {
   .con-form__row { grid-template-columns: 1fr; }
   .con-card { padding: 24px 18px; }
 }
-
-/* ---------- suggestions dropdown ---------- */
-.suggest-wrap { position: relative; display: block; }
-
-.suggest {
-  position: absolute;
-  top: calc(100% + 2px);
-  left: 0;
-  right: 0;
-  z-index: 30;
-  display: block;
-  background: var(--parchment);
-  border: 2px solid var(--ink);
-  border-radius: 3px;
-  max-height: 210px;
-  overflow-y: auto;
-}
-.suggest[hidden] { display: none; }
-.suggest__item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  width: 100%;
-  padding: 10px 13px;
-  background: none;
-  border: none;
-  border-bottom: 1px solid var(--line);
-  font-family: var(--sans);
-  font-size: 0.95rem;
-  color: var(--ink);
-  cursor: pointer;
-  text-align: left;
-}
-.suggest__name { text-align: left; }
-.suggest__item:last-child { border-bottom: none; }
-.suggest__item:hover,
-.suggest__item:focus-visible { background: var(--red); color: var(--cream); outline: none; }
 
 /* ============ 3. VIDEO TOGGLE ============ */
 .video-card {

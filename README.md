@@ -9,17 +9,16 @@ public/              ← everything that gets served
   index.html         all markup, 5 sections + launch banner
   css/styles.css     theme + layout (palette variables at top)
   js/i18n.js         translations: 13 languages incl. Quechua + Arabic RTL (auto-detected)
-  js/main.js         carousel, toggles, form, FAQ, referrer suggestions
+  js/main.js         carousel, toggles, form, FAQ, game-language field
   img/               ← drop carousel images here
 netlify/functions/
-  submission-created.js    sends localized confirmation email (Zoho SMTP),
-                           tallies "who shared" names into Netlify Blobs
-  referrer-suggestions.js  GET endpoint feeding the input's datalist
+  submission-created.js    sends localized confirmation email (Zoho SMTP)
+                           and notifies Wilfredo of each new subscriber
 netlify.toml         publish + functions dirs
 ```
 
 ## Run locally
-Quick look (static only — forms/suggestions won't hit the backend):
+Quick look (static only — forms won't hit the backend):
 ```
 cd ~/Desktop/projects/ayakucho-landing
 python3 -m http.server 8000 --directory public
@@ -73,17 +72,11 @@ the subscriber in their page language. Credentials live in Netlify env vars:
 ends) — remember to actually send those two follow-ups.
 
 ## Forms
-Netlify Forms, form name `launch-signup`. Fields: `email`, `heard-from`,
-`addr-street/city/region/postal/country`, `lang`. Submissions: Netlify UI →
-Forms. Never name a field `referrer` — Netlify overwrites it with the HTTP
-Referer header.
-
-## Referrer suggestions
-`heard-from` input suggests past answers (datalist) fetched from
-`/.netlify/functions/referrer-suggestions` — top 8 names by frequency from
-the `referrers` Blobs store. Emails/digits are filtered before storage.
-Inspect: `netlify blobs:get referrers counts` · reset: `netlify blobs:delete
-referrers counts`. To disable the feature, remove the fetch block in main.js.
+Netlify Forms, form name `launch-signup`. Fields: `email`, `game-language`
+(English/Español/Deutsch/other), `game-language-other` (free text when
+`other` is chosen), `addr-street/city/region/postal/country`, `lang`.
+Submissions: Netlify UI → Forms. Never name a field `referrer` — Netlify
+overwrites it with the HTTP Referer header.
 
 ## i18n
 Dictionary in `public/js/i18n.js`. Language auto-detected from the browser,
