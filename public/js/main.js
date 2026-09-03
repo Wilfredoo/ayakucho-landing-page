@@ -119,10 +119,10 @@
     });
   }
 
-  /* ---------- 3. "Who shared this?" suggestions with built-in tally ---------- */
+  /* ---------- 3. "Who shared this?" suggestions ---------- */
   // The endpoint returns [{name, count}] sorted by count desc. The dropdown
-  // shows them in that order with counts; the overall #1 gets a gold trophy
-  // and #2 a silver medal. Filters as you type; click fills the name.
+  // shows the names (most-active referrers first) purely as autocomplete for
+  // attribution. Filters as you type; click fills the name.
   var heardInput = document.querySelector("[data-heard-input]");
   var suggestBox = document.querySelector("[data-suggest]");
   var suggestions = [];
@@ -144,22 +144,15 @@
     var q = heardInput.value.trim().toLowerCase();
     suggestBox.innerHTML = "";
     var shown = 0;
-    suggestions.forEach(function (entry, rank) {
+    suggestions.forEach(function (entry) {
       if (q && entry.name.toLowerCase().indexOf(q) === -1) return;
-      var medal = rank === 0 ? "🏆" : rank === 1 ? "🥈" : "";
       var b = document.createElement("button");
       b.type = "button";
       b.className = "suggest__item";
-      // Name on the left, medal + count on the right, so the count reads
-      // as a tally rather than part of the typed name.
       var nameEl = document.createElement("span");
       nameEl.className = "suggest__name";
       nameEl.textContent = entry.name;
-      var metaEl = document.createElement("span");
-      metaEl.className = "suggest__meta";
-      metaEl.textContent = (medal ? medal + " " : "") + entry.count;
       b.appendChild(nameEl);
-      b.appendChild(metaEl);
       // mousedown (not click) so it fires before the input's blur hides the box
       b.addEventListener("mousedown", function (e) {
         e.preventDefault();
@@ -184,6 +177,16 @@
   }
 
   /* -------------------- 4. Email capture -------------------- */
+  // Preselect the game-language the visitor most likely wants, based on the
+  // page language (the game ships in English, Spanish and German).
+  var gameLang = document.querySelector("[data-game-lang]");
+  if (gameLang) {
+    var GAME_LANG_BY_UI = { en: "English", es: "Español", de: "Deutsch" };
+    var uiLang = window.AYK ? window.AYK.lang : "en";
+    var preferred = GAME_LANG_BY_UI[uiLang];
+    if (preferred) gameLang.value = preferred;
+  }
+
   var addrToggle = document.querySelector("[data-address-toggle]");
   var addrRegion = document.querySelector("[data-address-region]");
   if (addrToggle && addrRegion) {
