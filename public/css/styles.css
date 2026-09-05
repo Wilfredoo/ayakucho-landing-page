@@ -883,14 +883,9 @@ select.field__input {
   font-family: var(--serif);
   font-weight: 600;
   font-size: clamp(1.4rem, 4.5vw, 1.9rem);
-  margin: 0 0 8px;
-  color: var(--cream);
-}
-.insta-card__lede {
   margin: 0 auto 20px;
-  max-width: 42ch;
+  max-width: 24ch;
   color: var(--cream);
-  opacity: 0.85;
 }
 .btn--gold { background: var(--gold); color: var(--ink); width: auto; padding: 13px 26px; }
 .btn--gold:hover { background: #b3862c; }
