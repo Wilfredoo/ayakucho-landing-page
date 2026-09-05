@@ -8,14 +8,14 @@ const SITE = "https://ayakucho.com";
 
 const T = {
   en: {
-    subject: "You're on the list — Ayakucho launches October 10",
+    subject: "You're on the list — Ayakucho launches October 16",
     body: function (hasAddress) {
       return [
         "Thanks for signing up for Ayakucho — a social deduction game from the heart of Peru.",
         "",
         "Here is exactly what you'll get from me. Three emails, no more:",
         "  1. This confirmation.",
-        "  2. A reminder 3 days before the Kickstarter campaign begins on October 10, 2026.",
+        "  2. A reminder 3 days before the Kickstarter campaign begins on October 16, 2026.",
         "  3. One final email 3 days before the campaign ends.",
         "",
         "About your data: your email is stored securely, sent only over encrypted connections, never shared or sold, and used for nothing but these three emails. Reply \"delete\" at any time and it's gone.",
@@ -27,14 +27,14 @@ const T = {
     }
   },
   es: {
-    subject: "Estás en la lista — Ayakucho se lanza el 10 de octubre",
+    subject: "Estás en la lista — Ayakucho se lanza el 16 de octubre",
     body: function (hasAddress) {
       return [
         "Gracias por apuntarte a Ayakucho — un juego de deducción social desde el corazón del Perú.",
         "",
         "Esto es exactamente lo que recibirás de mí. Tres correos, nada más:",
         "  1. Esta confirmación.",
-        "  2. Un recordatorio 3 días antes de que la campaña de Kickstarter empiece el 10 de octubre de 2026.",
+        "  2. Un recordatorio 3 días antes de que la campaña de Kickstarter empiece el 16 de octubre de 2026.",
         "  3. Un último correo 3 días antes de que la campaña termine.",
         "",
         "Sobre tus datos: tu correo se guarda de forma segura, se envía solo por conexiones cifradas, nunca se comparte ni se vende, y no se usa para nada más que estos tres correos. Responde \"borrar\" cuando quieras y desaparece.",
@@ -46,14 +46,14 @@ const T = {
     }
   },
   pt: {
-    subject: "Você está na lista — Ayakucho chega em 10 de outubro",
+    subject: "Você está na lista — Ayakucho chega em 16 de outubro",
     body: function (hasAddress) {
       return [
         "Obrigado por se inscrever no Ayakucho — um jogo de dedução social do coração do Peru.",
         "",
         "Aqui está exatamente o que você vai receber de mim. Três e-mails, nada mais:",
         "  1. Esta confirmação.",
-        "  2. Um lembrete 3 dias antes de a campanha no Kickstarter começar, em 10 de outubro de 2026.",
+        "  2. Um lembrete 3 dias antes de a campanha no Kickstarter começar, em 16 de outubro de 2026.",
         "  3. Um último e-mail 3 dias antes de a campanha terminar.",
         "",
         "Sobre seus dados: seu e-mail é armazenado com segurança, enviado apenas por conexões criptografadas, nunca é compartilhado nem vendido, e não é usado para nada além desses três e-mails. Responda \"apagar\" a qualquer momento e ele some.",
@@ -65,14 +65,14 @@ const T = {
     }
   },
   de: {
-    subject: "Du bist auf der Liste — Ayakucho startet am 10. Oktober",
+    subject: "Du bist auf der Liste — Ayakucho startet am 16. Oktober",
     body: function (hasAddress) {
       return [
         "Danke für deine Anmeldung bei Ayakucho — einem Social-Deduction-Spiel aus dem Herzen Perus.",
         "",
         "Genau das bekommst du von mir. Drei E-Mails, nicht mehr:",
         "  1. Diese Bestätigung.",
-        "  2. Eine Erinnerung 3 Tage bevor die Kickstarter-Kampagne am 10. Oktober 2026 beginnt.",
+        "  2. Eine Erinnerung 3 Tage bevor die Kickstarter-Kampagne am 16. Oktober 2026 beginnt.",
         "  3. Eine letzte E-Mail 3 Tage vor Kampagnenende.",
         "",
         "Zu deinen Daten: Deine E-Mail-Adresse wird sicher gespeichert, nur über verschlüsselte Verbindungen übertragen, niemals weitergegeben oder verkauft und für nichts anderes als diese drei E-Mails verwendet. Antworte jederzeit mit \"löschen\" und sie ist weg.",
@@ -84,14 +84,14 @@ const T = {
     }
   },
   ru: {
-    subject: "Ты в списке — Ayakucho стартует 10 октября",
+    subject: "Ты в списке — Ayakucho стартует 16 октября",
     body: function (hasAddress) {
       return [
         "Спасибо, что записался в лист ожидания Ayakucho — социально-дедуктивной игры из самого сердца Перу.",
         "",
         "Вот ровно то, что ты получишь от меня. Три письма, не больше:",
         "  1. Это подтверждение.",
-        "  2. Напоминание за 3 дня до старта кампании на Kickstarter 10 октября 2026.",
+        "  2. Напоминание за 3 дня до старта кампании на Kickstarter 16 октября 2026.",
         "  3. Последнее письмо за 3 дня до конца кампании.",
         "",
         "О твоих данных: адрес хранится надёжно, передаётся только по зашифрованным соединениям, никогда не передаётся третьим лицам и не продаётся, и не используется ни для чего, кроме этих трёх писем. Ответь \"удалить\" в любой момент — и его не станет.",
@@ -103,14 +103,14 @@ const T = {
     }
   },
   be: {
-    subject: "Ты ў спісе — Ayakucho стартуе 10 кастрычніка",
+    subject: "Ты ў спісе — Ayakucho стартуе 16 кастрычніка",
     body: function (hasAddress) {
       return [
         "Дзякуй, што запісаўся ў ліст чакання Ayakucho — сацыяльна-дэдуктыўнай гульні з самага сэрца Перу.",
         "",
         "Вось роўна тое, што ты атрымаеш ад мяне. Тры лісты, не больш:",
         "  1. Гэтае пацвярджэнне.",
-        "  2. Напамін за 3 дні да старту кампаніі на Kickstarter 10 кастрычніка 2026.",
+        "  2. Напамін за 3 дні да старту кампаніі на Kickstarter 16 кастрычніка 2026.",
         "  3. Апошні ліст за 3 дні да канца кампаніі.",
         "",
         "Пра твае даныя: адрас захоўваецца надзейна, перадаецца толькі па зашыфраваных злучэннях, ніколі не перадаецца трэцім асобам і не прадаецца, і не выкарыстоўваецца ні для чаго, акрамя гэтых трох лістоў. Адкажы \"выдаліць\" у любы момант — і яго не стане.",
@@ -122,14 +122,14 @@ const T = {
     }
   },
   fr: {
-    subject: "Tu es sur la liste — Ayakucho arrive le 10 octobre",
+    subject: "Tu es sur la liste — Ayakucho arrive le 16 octobre",
     body: function (hasAddress) {
       return [
         "Merci de t'être inscrit pour Ayakucho — un jeu de déduction sociale venu du cœur du Pérou.",
         "",
         "Voici exactement ce que tu recevras. Trois e-mails, pas un de plus :",
         "  1. Cette confirmation.",
-        "  2. Un rappel 3 jours avant le début de la campagne Kickstarter, le 10 octobre 2026.",
+        "  2. Un rappel 3 jours avant le début de la campagne Kickstarter, le 16 octobre 2026.",
         "  3. Un dernier e-mail 3 jours avant la fin de la campagne.",
         "",
         "Tes données : ton e-mail est stocké en sécurité, transmis uniquement chiffré, jamais partagé ni vendu, et utilisé pour rien d'autre que ces trois e-mails. Réponds « supprimer » à tout moment et il disparaît.",
@@ -141,14 +141,14 @@ const T = {
     }
   },
   it: {
-    subject: "Sei in lista — Ayakucho arriva il 10 ottobre",
+    subject: "Sei in lista — Ayakucho arriva il 16 ottobre",
     body: function (hasAddress) {
       return [
         "Grazie per esserti iscritto ad Ayakucho — un gioco di deduzione sociale dal cuore del Perù.",
         "",
         "Ecco esattamente cosa riceverai. Tre email, non una di più:",
         "  1. Questa conferma.",
-        "  2. Un promemoria 3 giorni prima dell'inizio della campagna Kickstarter, il 10 ottobre 2026.",
+        "  2. Un promemoria 3 giorni prima dell'inizio della campagna Kickstarter, il 16 ottobre 2026.",
         "  3. Un'ultima email 3 giorni prima della fine.",
         "",
         "I tuoi dati: la tua email è conservata al sicuro, trasmessa solo cifrata, mai condivisa né venduta, e usata solo per queste tre email. Rispondi \"cancella\" in qualsiasi momento e sparisce.",
@@ -160,14 +160,14 @@ const T = {
     }
   },
   zh: {
-    subject: "你已加入名单 — Ayakucho 将于10月10日上线",
+    subject: "你已加入名单 — Ayakucho 将于10月16日上线",
     body: function (hasAddress) {
       return [
         "感谢你登记 Ayakucho —— 一款来自秘鲁腹地的社交推理游戏。",
         "",
         "你将收到的邮件如下，只有三封，绝不多发：",
         "  1. 这封确认邮件。",
-        "  2. 众筹开始前3天的提醒（2026年10月10日开始）。",
+        "  2. 众筹开始前3天的提醒（2026年10月16日开始）。",
         "  3. 众筹结束前3天的最后一封。",
         "",
         "关于你的数据：邮箱被安全存储、仅加密传输，绝不共享或出售，除这三封邮件外不作任何用途。随时回复「删除」即可清除。",
@@ -179,14 +179,14 @@ const T = {
     }
   },
   ja: {
-    subject: "登録完了 — Ayakuchoは10月10日ローンチ",
+    subject: "登録完了 — Ayakuchoは10月16日ローンチ",
     body: function (hasAddress) {
       return [
         "Ayakuchoへのご登録ありがとうございます — ペルーの奥地から生まれたソーシャル・ディダクションゲームです。",
         "",
         "届くメールは以下の3通だけです：",
         "  1. この確認メール。",
-        "  2. 2026年10月10日のKickstarterキャンペーン開始3日前のリマインダー。",
+        "  2. 2026年10月16日のKickstarterキャンペーン開始3日前のリマインダー。",
         "  3. キャンペーン終了3日前の最後の1通。",
         "",
         "データについて：メールアドレスは安全に保管され、暗号化してのみ送信され、共有・販売は一切せず、この3通以外には使用しません。いつでも「削除」と返信すれば消去されます。",
@@ -198,14 +198,14 @@ const T = {
     }
   },
   ko: {
-    subject: "등록 완료 — Ayakucho는 10월 10일 출시됩니다",
+    subject: "등록 완료 — Ayakucho는 10월 16일 출시됩니다",
     body: function (hasAddress) {
       return [
         "Ayakucho 등록 감사합니다 — 페루의 심장부에서 온 소셜 추리 게임입니다.",
         "",
         "받게 될 이메일은 딱 3통입니다:",
         "  1. 이 확인 메일.",
-        "  2. 2026년 10월 10일 Kickstarter 캠페인 시작 3일 전 리마인더.",
+        "  2. 2026년 10월 16일 Kickstarter 캠페인 시작 3일 전 리마인더.",
         "  3. 캠페인 종료 3일 전 마지막 메일.",
         "",
         "데이터 안내: 이메일은 안전하게 보관되고 암호화되어서만 전송되며, 절대 공유·판매되지 않고 이 3통 외에는 사용되지 않습니다. 언제든 \"삭제\"라고 답장하면 지워집니다.",
@@ -217,14 +217,14 @@ const T = {
     }
   },
   ar: {
-    subject: "أنت على القائمة — Ayakucho تنطلق في 10 أكتوبر",
+    subject: "أنت على القائمة — Ayakucho تنطلق في 16 أكتوبر",
     body: function (hasAddress) {
       return [
         "شكراً لتسجيلك في Ayakucho — لعبة استنتاج اجتماعي من قلب بيرو.",
         "",
         "إليك ما ستستلمه بالضبط. ثلاث رسائل لا غير:",
         "  1. هذا التأكيد.",
-        "  2. تذكير قبل ثلاثة أيام من بدء حملة كيك ستارتر في 10 أكتوبر 2026.",
+        "  2. تذكير قبل ثلاثة أيام من بدء حملة كيك ستارتر في 16 أكتوبر 2026.",
         "  3. رسالة أخيرة قبل ثلاثة أيام من انتهاء الحملة.",
         "",
         "بياناتك: بريدك محفوظ بأمان، يُنقل مشفراً فقط، لا يُشارك ولا يُباع، ولا يُستخدم لغير هذه الرسائل الثلاث. أرسل \"حذف\" في أي وقت وسيُمحى.",
@@ -236,14 +236,14 @@ const T = {
     }
   },
   qu: {
-    subject: "Listapiñam kachkanki — Ayakucho oktubre 10pi lluqsimunqa",
+    subject: "Listapiñam kachkanki — Ayakucho oktubre 16pi lluqsimunqa",
     body: function (hasAddress) {
       return [
         "Añay Ayakuchoman qillqakusqaykimanta — huk pakay-tapuy pukllana Perúpa sunqunmanta.",
         "",
         "Kaykunallatam chaskinki. Kimsa correokunalla:",
         "  1. Kay takyachiy.",
-        "  2. Huk yuyachiy, kimsa p'unchaw manaraq Kickstarter qallarichkaptin (2026 oktubre 10).",
+        "  2. Huk yuyachiy, kimsa p'unchaw manaraq Kickstarter qallarichkaptin (2026 oktubre 16).",
         "  3. Huknin kaq, kimsa p'unchaw manaraq tukukuchkaptin.",
         "",
         "Datoykikuna: correoykiqa allin waqaychasqam, cifrasqallam apachisqa, mana pimanpas qusqachu, mana rantikusqachu. \"Chinkachiy\" nispa kutichiy, hinaspa chinkanqa.",
