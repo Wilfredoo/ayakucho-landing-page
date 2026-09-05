@@ -25,6 +25,20 @@
 
 html { -webkit-text-size-adjust: 100%; }
 
+/* Belt-and-suspenders guard against accidental horizontal scroll. */
+html { overflow-x: hidden; }
+
+/* RTL (Arabic): the hero carousel uses a flex track far wider than the
+   viewport. Under an RTL root that inflates the document's width and opens
+   the page scrolled into empty space. Fix: keep the page's *layout*
+   direction LTR (so the wide carousel can't inflate the width) and restore
+   RTL only on the text-bearing regions — which is all Arabic actually needs. */
+html[dir="rtl"] body { direction: ltr; }
+html[dir="rtl"] .launch-banner,
+html[dir="rtl"] .hero__intro,
+html[dir="rtl"] main,
+html[dir="rtl"] .footer { direction: rtl; }
+
 body {
   margin: 0;
   font-family: var(--sans);
@@ -168,7 +182,9 @@ body { padding-top: 44px; }
 
 .carousel { position: relative; }
 
-.carousel__viewport { overflow: hidden; }
+/* direction: ltr keeps the flex track + translateX slide logic correct even
+   when the page is RTL (Arabic); slides are image-only so it's invisible. */
+.carousel__viewport { overflow: hidden; direction: ltr; }
 
 .carousel__track {
   display: flex;
@@ -265,6 +281,15 @@ body { padding-top: 44px; }
   line-height: 1.1;
   margin: 20px 0 0;
   color: var(--ink);
+}
+.hero__subtitle {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-style: italic;
+  font-size: clamp(1.05rem, 3vw, 1.35rem);
+  line-height: 1.35;
+  margin: 12px 0 0;
+  color: var(--muted);
 }
 
 /* ---------- quick-facts strip under the headline ---------- */
@@ -714,6 +739,166 @@ select.field__input {
 .footer__link:hover { border-bottom-color: var(--gold); }
 .footer__link:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
 .footer__link--muted { color: var(--cream); opacity: 0.6; font-weight: 400; }
+
+/* ============ CAMPAIGN AT A GLANCE ============ */
+.block-title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(1.5rem, 4.5vw, 2rem);
+  text-align: center;
+  margin: 0 0 22px;
+}
+
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.fact {
+  flex: 1 1 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 4px;
+  padding: 18px 14px;
+  background: var(--parchment-2);
+  border: 2px solid var(--line);
+  border-radius: 6px;
+}
+.fact__label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.fact__value {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1.1;
+  color: var(--ink);
+}
+.fact__note {
+  font-size: 0.72rem;
+  font-style: italic;
+  color: var(--muted);
+}
+.campaign__note {
+  margin: 16px 0 0;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ============ PLEDGE TIERS ============ */
+.tiers__lede {
+  margin: 0 0 24px;
+  text-align: center;
+  color: var(--muted);
+}
+.tiers {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.tier {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 22px 18px 20px;
+  background: var(--parchment-2);
+  border: 2px solid var(--line);
+  border-top: 5px solid var(--tier, var(--ink));
+  border-radius: 6px;
+}
+.tier__badge {
+  position: absolute;
+  top: -11px;
+  right: 14px;
+  padding: 3px 10px;
+  background: var(--tier, var(--ink));
+  color: var(--cream);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: 999px;
+}
+.tier__name {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: var(--ink);
+}
+.tier__price {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--tier, var(--ink));
+}
+.tier__desc {
+  margin: 4px 0 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.tier--travel   { --tier: #9C7A3C; }
+.tier--early    { --tier: var(--red); }
+.tier--standard { --tier: var(--ink); }
+.tier--witch    { --tier: #6E4A6B; }
+.tier--silver   { --tier: #8A8F96; }
+.tier--golden   { --tier: var(--gold); }
+
+.tiers__note {
+  margin: 22px 0 0;
+  padding: 12px 16px;
+  background: var(--parchment-2);
+  border-left: 4px solid var(--gold);
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+/* ============ FOLLOW / INSTAGRAM ============ */
+.insta-card {
+  text-align: center;
+  padding: 34px 24px;
+  background: var(--ink);
+  border: 3px solid var(--gold);
+  border-radius: 6px;
+  color: var(--cream);
+}
+.insta-card__icon { display: inline-flex; color: var(--gold); margin-bottom: 6px; }
+.insta-card__title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(1.4rem, 4.5vw, 1.9rem);
+  margin: 0 0 8px;
+  color: var(--cream);
+}
+.insta-card__lede {
+  margin: 0 auto 20px;
+  max-width: 42ch;
+  color: var(--cream);
+  opacity: 0.85;
+}
+.btn--gold { background: var(--gold); color: var(--ink); width: auto; padding: 13px 26px; }
+.btn--gold:hover { background: #b3862c; }
+.insta-card .btn { display: inline-block; }
+
+@media (max-width: 480px) {
+  .tiers { grid-template-columns: 1fr; }
+}
 
 /* ---------- reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {

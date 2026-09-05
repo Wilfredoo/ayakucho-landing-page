@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="css/styles.css?v=12" />
+  <link rel="stylesheet" href="css/styles.css?v=13" />
   <!-- First slide gets full bandwidth priority; the rest load deferred. -->
   <link rel="preload" as="image" href="img/slide-1.webp" type="image/webp" fetchpriority="high" />
 </head>
@@ -95,7 +95,8 @@
 
     <div class="hero__intro">
       <span class="badge" data-i18n="badge">Launching October 10, 2026</span>
-      <h1 class="hero__headline" data-i18n="headline">Trust, betrayal, and Peruvian folklore.</h1>
+      <h1 class="hero__headline" data-i18n="heroTitle">Ayakucho: The Corner of the Dead</h1>
+      <p class="hero__subtitle" data-i18n="headline">Trust, betrayal, and Peruvian folklore.</p>
       <ul class="stats" aria-label="Game facts">
         <li class="stats__item" data-i18n="statPlayers">6–12 players</li>
         <li class="stats__item" data-i18n="statTime">30–45 min</li>
@@ -237,6 +238,77 @@
 
     <div class="greca" role="presentation"></div>
 
+    <!-- ============ CAMPAIGN AT A GLANCE ============ -->
+    <section class="section section--campaign" aria-labelledby="campaign-title">
+      <h2 id="campaign-title" class="block-title" data-i18n="campaignTitle">The campaign at a glance</h2>
+      <div class="facts">
+        <div class="fact">
+          <span class="fact__label" data-i18n="factGoal">Funding goal</span>
+          <span class="fact__value">€8,000</span>
+          <span class="fact__note" data-i18n="estimate">estimate</span>
+        </div>
+        <div class="fact">
+          <span class="fact__label" data-i18n="factDelivery">Estimated delivery</span>
+          <span class="fact__value" data-i18n="factDeliveryValue">January 2027</span>
+        </div>
+        <div class="fact">
+          <span class="fact__label" data-i18n="factShipping">Shipping</span>
+          <span class="fact__value">€5–12</span>
+          <span class="fact__note" data-i18n="estimate">estimate</span>
+        </div>
+      </div>
+      <p class="campaign__note" data-i18n="shippingNote">Shipping is an estimate — the final cost depends on whether we ship from Germany or China, which we're still deciding.</p>
+    </section>
+
+    <div class="greca" role="presentation"></div>
+
+    <!-- ============ PLEDGE TIERS ============ -->
+    <section class="section section--tiers" aria-labelledby="tiers-title">
+      <h2 id="tiers-title" class="block-title" data-i18n="tiersTitle">Pledge tiers</h2>
+      <p class="tiers__lede" data-i18n="tiersLede">A preview of what you'll be able to back on launch day. Every price is an estimate for now.</p>
+
+      <ul class="tiers">
+        <li class="tier tier--travel">
+          <span class="tier__name">Travel Edition</span>
+          <span class="tier__price">€25</span>
+          <p class="tier__desc" data-i18n="tierTravel">The absolute essentials in a compact package.</p>
+        </li>
+        <li class="tier tier--early">
+          <span class="tier__badge" data-i18n="badgeEarly">First 48 hours</span>
+          <span class="tier__name">Early Native</span>
+          <span class="tier__price">€42</span>
+          <p class="tier__desc" data-i18n="tierEarly">The standard edition at an early-bird price — the first 48 hours only.</p>
+        </li>
+        <li class="tier tier--standard">
+          <span class="tier__name">Standard Edition</span>
+          <span class="tier__price">€48</span>
+          <p class="tier__desc" data-i18n="tierStandard">The complete game: box, board, every card and the rulebook.</p>
+        </li>
+        <li class="tier tier--witch">
+          <span class="tier__badge" data-i18n="badgeWitch">Bamberg backers</span>
+          <span class="tier__name">Former Witch</span>
+          <span class="tier__price">€40</span>
+          <p class="tier__desc" data-i18n="tierWitch">Backed Bamberg? Get the standard edition at this price anytime during the campaign — no limit.</p>
+        </li>
+        <li class="tier tier--silver">
+          <span class="tier__badge" data-i18n="badgeSilver">Best value</span>
+          <span class="tier__name">Silver Package</span>
+          <span class="tier__price">€65</span>
+          <p class="tier__desc" data-i18n="tierSilver">The travel and standard editions together.</p>
+        </li>
+        <li class="tier tier--golden">
+          <span class="tier__badge" data-i18n="badgeGolden">Give back</span>
+          <span class="tier__name">Golden Package</span>
+          <span class="tier__price">€110</span>
+          <p class="tier__desc" data-i18n="tierGolden">Three games: one standard for you, one standard for a child in Ayacucho, and a travel copy for a friend.</p>
+        </li>
+      </ul>
+
+      <p class="tiers__note" data-i18n="tiersCharity">10% of everything the campaign raises goes to the children of CEDIF-INABIF in Ayacucho.</p>
+    </section>
+
+    <div class="greca" role="presentation"></div>
+
     <!-- ============ 3. VIDEO TOGGLE ============ -->
     <section class="section section--video" aria-labelledby="video-title">
       <div class="video-card" data-video>
@@ -289,6 +361,20 @@
           <span data-faq-btn-label>More</span>
         </button>
       </article>
+    </section>
+
+    <div class="greca" role="presentation"></div>
+
+    <!-- ============ FOLLOW / INSTAGRAM ============ -->
+    <section class="section section--insta" aria-labelledby="insta-title">
+      <div class="insta-card">
+        <span class="insta-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+        </span>
+        <h2 id="insta-title" class="insta-card__title" data-i18n="instaTitle">Follow the journey</h2>
+        <p class="insta-card__lede" data-i18n="instaLede">Behind the scenes of the game, the art, and the road to launch — see it as it happens.</p>
+        <a class="btn btn--gold" href="https://www.instagram.com/ayakuchogamelab/" target="_blank" rel="noopener">@ayakuchogamelab</a>
+      </div>
     </section>
 
     <div class="greca" role="presentation"></div>
@@ -355,7 +441,7 @@
     </nav>
   </footer>
 
-  <script src="js/i18n.js?v=12"></script>
-  <script src="js/main.js?v=12"></script>
+  <script src="js/i18n.js?v=13"></script>
+  <script src="js/main.js?v=13"></script>
 </body>
 </html>
