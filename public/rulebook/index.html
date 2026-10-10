@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rulebook — Ayakucho</title>
+  <meta name="description" content="The Ayakucho rulebook — a social deduction board game rooted in Peruvian folklore." />
+  <meta name="robots" content="noindex" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/styles.css?v=15" />
+
+  <style>
+    /* This page has no fixed banner, so drop the body offset styles.css adds. */
+    body { padding-top: 0; }
+
+    .rb { max-width: 760px; margin: 0 auto; padding: 40px 20px 72px; }
+    .rb__back {
+      display: inline-block;
+      margin-bottom: 22px;
+      font-weight: 600;
+      color: var(--red-dark);
+      text-decoration: none;
+    }
+    .rb__back:hover { text-decoration: underline; }
+
+    .rb-card {
+      text-align: center;
+      background: var(--ink);
+      border: 3px solid var(--gold);
+      border-radius: 8px;
+      padding: 40px 28px 34px;
+      color: var(--cream);
+    }
+    .rb-card__icon { font-size: 2.6rem; line-height: 1; margin-bottom: 10px; }
+    .rb-card__title {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: clamp(1.7rem, 5vw, 2.4rem);
+      margin: 0 0 6px;
+      color: var(--gold);
+    }
+    .rb-card__thanks {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.05rem, 3vw, 1.25rem);
+      margin: 0 auto 22px;
+      max-width: 36ch;
+      opacity: 0.92;
+    }
+
+    .rb-meta {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 10px;
+      margin: 0 0 26px;
+      padding: 0;
+    }
+    .rb-meta li {
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      padding: 6px 13px;
+      border: 1px solid rgba(246, 238, 220, 0.35);
+      border-radius: 999px;
+      color: var(--cream);
+    }
+    .rb-meta li span { color: var(--gold); }
+
+    .rb-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+    .rb-actions .btn { width: auto; }
+    .btn--gold { background: var(--gold); color: var(--ink); }
+    .btn--gold:hover { background: #b3862c; }
+    .btn--ghost {
+      background: transparent;
+      color: var(--cream);
+      border: 2px solid var(--gold);
+      padding: 12px 24px;
+    }
+    .btn--ghost:hover { background: rgba(199, 154, 59, 0.15); }
+
+    /* Inline preview — renders in desktop browsers; on phones the buttons
+       above are the way in (mobile browsers rarely embed PDFs). */
+    .rb-embed-wrap { margin-top: 28px; }
+    .rb-embed {
+      width: 100%;
+      height: 78vh;
+      min-height: 480px;
+      border: 2px solid var(--line);
+      border-radius: 6px;
+      background: var(--parchment-2);
+    }
+    .rb-embed__fallback {
+      padding: 26px;
+      text-align: center;
+      color: var(--muted);
+    }
+    @media (max-width: 600px) {
+      .rb-embed { display: none; }  /* phones: skip the blank embed, use buttons */
+    }
+  </style>
+</head>
+<body>
+  <main class="rb">
+    <a class="rb__back" href="/">&#8592; ayakucho.com</a>
+
+    <section class="rb-card">
+      <div class="rb-card__icon" aria-hidden="true">&#128214;</div>
+      <h1 class="rb-card__title">The Ayakucho Rulebook</h1>
+      <p class="rb-card__thanks">Thanks for checking out the rulebook — here's everything you need to play.</p>
+
+      <ul class="rb-meta">
+        <li><span>Written by</span> Wilfredo Casas</li>
+        <li><span>Last updated</span> <time datetime="2026-10">October 2026</time></li>
+        <li><span>Language</span> English</li>
+      </ul>
+
+      <div class="rb-actions">
+        <a class="btn btn--gold" href="/rulebook.pdf" target="_blank" rel="noopener">Open the rulebook</a>
+        <a class="btn btn--ghost" href="/rulebook.pdf" download="Ayakucho-Rulebook.pdf">Download PDF</a>
+      </div>
+    </section>
+
+    <div class="rb-embed-wrap">
+      <object class="rb-embed" data="/rulebook.pdf" type="application/pdf" aria-label="Ayakucho rulebook preview">
+        <div class="rb-embed__fallback">
+          <p>Your browser can't preview the PDF here.</p>
+          <p><a href="/rulebook.pdf" target="_blank" rel="noopener">Open the rulebook in a new tab &rarr;</a></p>
+        </div>
+      </object>
+    </div>
+  </main>
+</body>
+</html>
