@@ -2,3 +2,13 @@
   command = "npm install"
   publish = "public"
   functions = "netlify/functions"
+
+# Campaign is live: send the homepage straight to the Kickstarter.
+# force = true overrides the static index.html; 302 (temporary) so the
+# landing page can be restored after the campaign without cache headaches.
+[[redirects]]
+  from = "/"
+  to = "https://www.kickstarter.com/projects/1418360767/ayakucho"
+  status = 302
+  force = true
+
