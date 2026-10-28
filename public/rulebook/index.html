@@ -17,13 +17,15 @@
     .rb {
       min-height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 32px 20px;
+      gap: 18px;
+      padding: 40px 20px;
     }
     .rb-card {
       text-align: center;
-      max-width: 500px;
+      max-width: 520px;
       width: 100%;
       background: var(--ink);
       border: 3px solid var(--gold);
@@ -36,8 +38,18 @@
       font-family: var(--serif);
       font-weight: 600;
       font-size: clamp(1.8rem, 5.5vw, 2.3rem);
-      margin: 0 0 16px;
+      margin: 0 0 6px;
       color: var(--gold);
+    }
+    .rb-card__ver {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--cream);
+      opacity: 0.7;
+      margin-bottom: 16px;
     }
     .rb-card__msg {
       font-size: 1rem;
@@ -46,22 +58,43 @@
       max-width: 42ch;
       opacity: 0.92;
     }
-    .rb-actions {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px;
-    }
+    .rb-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
     .rb-actions .btn { width: auto; }
     .btn--gold { background: var(--gold); color: var(--ink); }
     .btn--gold:hover { background: #b3862c; }
     .btn--ghost {
-      background: transparent;
-      color: var(--cream);
-      border: 2px solid var(--gold);
-      padding: 12px 24px;
+      background: transparent; color: var(--cream);
+      border: 2px solid var(--gold); padding: 12px 24px;
     }
     .btn--ghost:hover { background: rgba(199, 154, 59, 0.15); }
+
+    /* ---- feedback card (light) ---- */
+    .fb-card {
+      max-width: 520px;
+      width: 100%;
+      background: var(--parchment-2);
+      border: 2px solid var(--line);
+      border-radius: 10px;
+      padding: 28px 26px 26px;
+    }
+    .fb-card__title {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 1.25rem;
+      margin: 0 0 6px;
+      color: var(--ink);
+    }
+    .fb-card__lede { margin: 0 0 18px; font-size: 0.95rem; line-height: 1.55; color: var(--muted); }
+    .fb-form .field { display: block; margin-bottom: 14px; }
+    .fb-form .field__label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 6px; color: var(--ink); }
+    .fb-form .field__opt { font-weight: 400; color: var(--muted); }
+    .fb-form textarea.field__input { min-height: 120px; }
+    .fb-success {
+      margin: 14px 0 0; padding: 12px 14px;
+      background: var(--ink); color: var(--cream);
+      border-radius: 4px; font-weight: 500;
+    }
+    .hidden { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
   </style>
 </head>
 <body>
@@ -69,12 +102,56 @@
     <section class="rb-card">
       <div class="rb-card__icon" aria-hidden="true">&#128214;</div>
       <h1 class="rb-card__title">The Ayakucho Rulebook</h1>
+      <div class="rb-card__ver">Version 5.1 · free</div>
       <p class="rb-card__msg">This rulebook is in progress: it needs to be proofread, translated and be added illustrations, which Maja is currently working on. For now, enjoy the ugly essentials by downloading it for free below.</p>
       <div class="rb-actions">
-        <a class="btn btn--gold" href="/rulebook.pdf" download="Ayakucho-Rulebook.pdf">Download the rulebook (PDF)</a>
-        <a class="btn btn--ghost" href="/rulebook.pdf" target="_blank" rel="noopener">Open in new tab</a>
+        <a class="btn btn--gold" href="/rulebook.pdf?v=5.1" download="Ayakucho-Rulebook-v5.1.pdf">Download the rulebook (PDF)</a>
+        <a class="btn btn--ghost" href="/rulebook.pdf?v=5.1" target="_blank" rel="noopener">Open in new tab</a>
       </div>
     </section>
+
+    <section class="fb-card">
+      <h2 class="fb-card__title">Questions &amp; feedback</h2>
+      <p class="fb-card__lede">Ask questions, propose new game modes, or give feedback on this rulebook in the box below. They'll go straight to Wilfredo's inbox.</p>
+
+      <form class="fb-form" name="rulebook-feedback" method="POST" action="/rulebook/" data-netlify="true" netlify-honeypot="bot-field" data-fb-form>
+        <input type="hidden" name="form-name" value="rulebook-feedback" />
+        <p class="hidden" aria-hidden="true"><label>Don't fill this out if you're human: <input name="bot-field" /></label></p>
+
+        <label class="field">
+          <span class="field__label">Your email <span class="field__opt">(optional, so Wilfredo can reply)</span></span>
+          <input class="field__input" type="email" name="email" autocomplete="email" placeholder="you@example.com" />
+        </label>
+
+        <label class="field">
+          <span class="field__label">Your message</span>
+          <textarea class="field__input" name="message" required placeholder="Ask a question, suggest a mode, or tell us what's unclear…"></textarea>
+        </label>
+
+        <button class="btn btn--red" type="submit">Send to Wilfredo</button>
+
+        <p class="fb-success" data-fb-success hidden role="status">Thanks — your message is on its way to Wilfredo. 🙌</p>
+      </form>
+    </section>
   </main>
+
+  <script>
+    (function () {
+      var form = document.querySelector("[data-fb-form]");
+      var ok = document.querySelector("[data-fb-success]");
+      if (!form || !ok) return;
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var data = new URLSearchParams(new FormData(form)).toString();
+        function done() { ok.hidden = false; form.reset(); }
+        // POST to /rulebook/ (not /, which redirects to Kickstarter).
+        fetch("/rulebook/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: data
+        }).then(done).catch(done);
+      });
+    })();
+  </script>
 </body>
 </html>

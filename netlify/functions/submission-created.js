@@ -308,6 +308,34 @@ exports.handler = async function (event) {
     return { statusCode: 200, body: "ok" };
   }
 
+  // Rulebook feedback: questions, new-mode ideas, notes — straight to Wilfredo.
+  if (formName === "rulebook-feedback") {
+    var fb = p.data || {};
+    var fbMsg = String(fb.message || "").trim();
+    var fbEmail = String(fb.email || "").trim();
+    if (!fbMsg) return { statusCode: 200, body: "empty" };
+    var fbMail = {
+      from: '"Ayakucho Rulebook" <' + process.env.EMAIL_ADDRESS + ">",
+      to: "inbox@wilfredocasas.com",
+      subject: "📖 Rulebook feedback" + (fbEmail ? " from " + fbEmail : ""),
+      text: [
+        "New message from the rulebook page on ayakucho.com:",
+        "",
+        fbMsg,
+        "",
+        "— Reply-to: " + (fbEmail || "(not given)")
+      ].join("\n")
+    };
+    if (fbEmail) fbMail.replyTo = fbEmail;
+    try {
+      await makeTransporter().sendMail(fbMail);
+    } catch (e) {
+      console.error("rulebook feedback failed:", e.message);
+      return { statusCode: 500, body: "email failed" };
+    }
+    return { statusCode: 200, body: "ok" };
+  }
+
   if (formName !== "launch-signup") return { statusCode: 200, body: "ignored" };
 
   var data = p.data || {};
