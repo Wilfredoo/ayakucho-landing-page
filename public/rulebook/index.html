@@ -112,14 +112,14 @@
 
     <section class="fb-card">
       <h2 class="fb-card__title">Questions &amp; feedback</h2>
-      <p class="fb-card__lede">Ask questions, propose new game modes, or give feedback on this rulebook in the box below. They'll go straight to Wilfredo's inbox.</p>
+      <p class="fb-card__lede">Ask questions, propose new game modes, or give feedback on this rulebook in the box below. They'll go straight to the game designer's inbox.</p>
 
       <form class="fb-form" name="rulebook-feedback" method="POST" action="/rulebook/" data-netlify="true" netlify-honeypot="bot-field" data-fb-form>
         <input type="hidden" name="form-name" value="rulebook-feedback" />
         <p class="hidden" aria-hidden="true"><label>Don't fill this out if you're human: <input name="bot-field" /></label></p>
 
         <label class="field">
-          <span class="field__label">Your email <span class="field__opt">(optional, so Wilfredo can reply)</span></span>
+          <span class="field__label">Your email <span class="field__opt">(optional, so we can reply)</span></span>
           <input class="field__input" type="email" name="email" autocomplete="email" placeholder="you@example.com" />
         </label>
 
@@ -128,9 +128,9 @@
           <textarea class="field__input" name="message" required placeholder="Ask a question, suggest a mode, or tell us what's unclear…"></textarea>
         </label>
 
-        <button class="btn btn--red" type="submit">Send to Wilfredo</button>
+        <button class="btn btn--red" type="submit">Send message</button>
 
-        <p class="fb-success" data-fb-success hidden role="status">Thanks — your message is on its way to Wilfredo. 🙌</p>
+        <p class="fb-success" data-fb-success hidden role="status">Thanks — your message is on its way. 🙌</p>
       </form>
     </section>
   </main>
