@@ -14,143 +14,299 @@
 
   <style>
     body { padding-top: 0; }
+
+    .rb-lang {
+      position: fixed;
+      top: 14px;
+      right: 14px;
+      z-index: 20;
+    }
+    .rb-lang select {
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--ink);
+      background: var(--parchment-2);
+      border: 2px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 30px 6px 14px;
+      cursor: pointer;
+      appearance: none; -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234a3f35' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 11px center; background-size: 13px;
+    }
+    .rb-lang select:focus { outline: none; border-color: var(--gold); }
+
     .rb {
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 18px;
-      padding: 40px 20px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 18px; padding: 56px 20px 40px;
     }
     .rb-card {
-      text-align: center;
-      max-width: 520px;
-      width: 100%;
-      background: var(--ink);
-      border: 3px solid var(--gold);
-      border-radius: 10px;
-      padding: 42px 30px 38px;
-      color: var(--cream);
+      text-align: center; max-width: 520px; width: 100%;
+      background: var(--ink); border: 3px solid var(--gold);
+      border-radius: 10px; padding: 42px 30px 38px; color: var(--cream);
     }
     .rb-card__icon { font-size: 2.8rem; line-height: 1; margin-bottom: 12px; }
     .rb-card__title {
-      font-family: var(--serif);
-      font-weight: 600;
-      font-size: clamp(1.8rem, 5.5vw, 2.3rem);
-      margin: 0 0 6px;
-      color: var(--gold);
+      font-family: var(--serif); font-weight: 600;
+      font-size: clamp(1.8rem, 5.5vw, 2.3rem); margin: 0 0 6px; color: var(--gold);
     }
     .rb-card__ver {
-      display: inline-block;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--cream);
-      opacity: 0.7;
-      margin-bottom: 16px;
+      display: inline-block; font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      color: var(--cream); opacity: 0.7; margin-bottom: 16px;
     }
-    .rb-card__msg {
-      font-size: 1rem;
-      line-height: 1.6;
-      margin: 0 auto 26px;
-      max-width: 42ch;
-      opacity: 0.92;
-    }
+    .rb-card__msg { font-size: 1rem; line-height: 1.6; margin: 0 auto 26px; max-width: 42ch; opacity: 0.92; }
     .rb-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
     .rb-actions .btn { width: auto; }
     .btn--gold { background: var(--gold); color: var(--ink); }
     .btn--gold:hover { background: #b3862c; }
-    .btn--ghost {
-      background: transparent; color: var(--cream);
-      border: 2px solid var(--gold); padding: 12px 24px;
-    }
+    .btn--ghost { background: transparent; color: var(--cream); border: 2px solid var(--gold); padding: 12px 24px; }
     .btn--ghost:hover { background: rgba(199, 154, 59, 0.15); }
 
-    /* ---- feedback card (light) ---- */
     .fb-card {
-      max-width: 520px;
-      width: 100%;
-      background: var(--parchment-2);
-      border: 2px solid var(--line);
-      border-radius: 10px;
-      padding: 28px 26px 26px;
-    }
-    .fb-card__title {
-      font-family: var(--serif);
-      font-weight: 600;
-      font-size: 1.25rem;
-      margin: 0 0 6px;
-      color: var(--ink);
+      max-width: 520px; width: 100%;
+      background: var(--parchment-2); border: 2px solid var(--line);
+      border-radius: 10px; padding: 26px;
     }
     .fb-card__lede { margin: 0 0 18px; font-size: 0.95rem; line-height: 1.55; color: var(--muted); }
     .fb-form .field { display: block; margin-bottom: 14px; }
     .fb-form .field__label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 6px; color: var(--ink); }
     .fb-form .field__opt { font-weight: 400; color: var(--muted); }
     .fb-form textarea.field__input { min-height: 120px; }
-    .fb-success {
-      margin: 14px 0 0; padding: 12px 14px;
-      background: var(--ink); color: var(--cream);
-      border-radius: 4px; font-weight: 500;
+
+    .fb-thanks { text-align: center; padding: 10px 0 4px; }
+    .fb-thanks__msg {
+      font-family: var(--serif); font-size: 1.3rem; font-weight: 600;
+      color: var(--ink); margin: 0 0 16px;
     }
+    .fb-again {
+      background: none; border: none; cursor: pointer;
+      font-family: var(--sans); font-size: 0.95rem; font-weight: 600;
+      color: var(--red-dark); text-decoration: underline; text-underline-offset: 3px;
+    }
+
     .hidden { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
   </style>
 </head>
 <body>
+  <div class="rb-lang">
+    <select data-lang aria-label="Language">
+      <option value="en">English</option>
+      <option value="de">Deutsch</option>
+      <option value="es">Español</option>
+      <option value="ru">Русский</option>
+      <option value="pt">Português</option>
+      <option value="ja">日本語</option>
+    </select>
+  </div>
+
   <main class="rb">
     <section class="rb-card">
       <div class="rb-card__icon" aria-hidden="true">&#128214;</div>
-      <h1 class="rb-card__title">The Ayakucho Rulebook</h1>
-      <div class="rb-card__ver">Version 5.1 · free</div>
-      <p class="rb-card__msg">This rulebook is in progress: it needs to be proofread, translated and be added illustrations, which Maja is currently working on. For now, enjoy the ugly essentials by downloading it for free below.</p>
+      <h1 class="rb-card__title" data-i18n="title">Ayakucho's Rulebook</h1>
+      <div class="rb-card__ver" data-i18n="ver">Version 5.1 · free</div>
+      <p class="rb-card__msg" data-i18n="msg">This rulebook is in progress: it needs to be proofread, translated and be added illustrations, which Maja is currently working on. For now, enjoy the ugly essentials by downloading it for free below.</p>
       <div class="rb-actions">
-        <a class="btn btn--gold" href="/rulebook.pdf?v=5.1.1" download="Ayakucho-Rulebook-v5.1.pdf">Download the rulebook (PDF)</a>
-        <a class="btn btn--ghost" href="/rulebook.pdf?v=5.1.1" target="_blank" rel="noopener">Open in new tab</a>
+        <a class="btn btn--gold" href="/rulebook.pdf?v=5.1.1" download="Ayakucho-Rulebook-v5.1.pdf" data-i18n="download">Download the rulebook (PDF)</a>
+        <a class="btn btn--ghost" href="/rulebook.pdf?v=5.1.1" target="_blank" rel="noopener" data-i18n="open">Open in new tab</a>
       </div>
     </section>
 
     <section class="fb-card">
-      <h2 class="fb-card__title">Questions &amp; feedback</h2>
-      <p class="fb-card__lede">Ask questions, propose new game modes, or give feedback on this rulebook in the box below. They'll go straight to the game designer's inbox.</p>
+      <div data-fb-view="form">
+        <p class="fb-card__lede" data-i18n="contact">Contact the game designer directly for questions, new game mode ideas, typos in the rulebook, etc.</p>
 
-      <form class="fb-form" name="rulebook-feedback" method="POST" action="/rulebook/" data-netlify="true" netlify-honeypot="bot-field" data-fb-form>
-        <input type="hidden" name="form-name" value="rulebook-feedback" />
-        <p class="hidden" aria-hidden="true"><label>Don't fill this out if you're human: <input name="bot-field" /></label></p>
+        <form class="fb-form" name="rulebook-feedback" method="POST" action="/rulebook/" data-netlify="true" netlify-honeypot="bot-field" data-fb-form>
+          <input type="hidden" name="form-name" value="rulebook-feedback" />
+          <p class="hidden" aria-hidden="true"><label>Don't fill this out if you're human: <input name="bot-field" /></label></p>
 
-        <label class="field">
-          <span class="field__label">Your email <span class="field__opt">(optional, so we can reply)</span></span>
-          <input class="field__input" type="email" name="email" autocomplete="email" placeholder="you@example.com" />
-        </label>
+          <label class="field">
+            <span class="field__label"><span data-i18n="emailLabel">Your email</span> <span class="field__opt" data-i18n="emailOpt">(optional, so we can reply)</span></span>
+            <input class="field__input" type="email" name="email" autocomplete="email" placeholder="you@example.com" />
+          </label>
 
-        <label class="field">
-          <span class="field__label">Your message</span>
-          <textarea class="field__input" name="message" required placeholder="Ask a question, suggest a mode, or tell us what's unclear…"></textarea>
-        </label>
+          <label class="field">
+            <span class="field__label" data-i18n="msgLabel">Your message</span>
+            <textarea class="field__input" name="message" required data-i18n-ph="msgPh" placeholder="Ask a question, suggest a mode, or tell us what's unclear…"></textarea>
+          </label>
 
-        <button class="btn btn--red" type="submit">Send message</button>
+          <button class="btn btn--red" type="submit" data-i18n="send">Send message</button>
+        </form>
+      </div>
 
-        <p class="fb-success" data-fb-success hidden role="status">Thanks — your message is on its way. 🙌</p>
-      </form>
+      <div data-fb-view="thanks" hidden>
+        <div class="fb-thanks">
+          <p class="fb-thanks__msg" data-i18n="success" role="status">Thanks! Message sent.</p>
+          <button type="button" class="fb-again" data-fb-again data-i18n="newMsg">Write a new message</button>
+        </div>
+      </div>
     </section>
   </main>
 
   <script>
     (function () {
+      "use strict";
+
+      var DICT = {
+        en: {
+          title: "Ayakucho's Rulebook",
+          ver: "Version 5.1 · free",
+          msg: "This rulebook is in progress: it needs to be proofread, translated and be added illustrations, which Maja is currently working on. For now, enjoy the ugly essentials by downloading it for free below.",
+          download: "Download the rulebook (PDF)",
+          open: "Open in new tab",
+          contact: "Contact the game designer directly for questions, new game mode ideas, typos in the rulebook, etc.",
+          emailLabel: "Your email",
+          emailOpt: "(optional, so we can reply)",
+          msgLabel: "Your message",
+          msgPh: "Ask a question, suggest a mode, or tell us what's unclear…",
+          send: "Send message",
+          success: "Thanks! Message sent.",
+          newMsg: "Write a new message"
+        },
+        de: {
+          title: "Ayakucho-Regelwerk",
+          ver: "Version 5.1 · kostenlos",
+          msg: "Dieses Regelwerk ist noch in Arbeit: Es muss Korrektur gelesen und übersetzt werden und braucht Illustrationen, an denen Maja gerade arbeitet. Genieße fürs Erste die hässliche Essenz und lade es dir unten kostenlos herunter.",
+          download: "Regelwerk herunterladen (PDF)",
+          open: "In neuem Tab öffnen",
+          contact: "Kontaktiere den Spieledesigner direkt für Fragen, Ideen für neue Spielmodi, Tippfehler im Regelwerk usw.",
+          emailLabel: "Deine E-Mail",
+          emailOpt: "(optional, damit wir antworten können)",
+          msgLabel: "Deine Nachricht",
+          msgPh: "Stell eine Frage, schlag einen Modus vor oder sag uns, was unklar ist…",
+          send: "Nachricht senden",
+          success: "Danke! Nachricht gesendet.",
+          newMsg: "Neue Nachricht schreiben"
+        },
+        es: {
+          title: "Reglamento de Ayakucho",
+          ver: "Versión 5.1 · gratis",
+          msg: "Este reglamento está en proceso: falta corregirlo, traducirlo y añadirle ilustraciones, en lo que Maja está trabajando ahora mismo. Por ahora, disfruta de lo esencial (aunque feo) descargándolo gratis aquí abajo.",
+          download: "Descargar el reglamento (PDF)",
+          open: "Abrir en una pestaña nueva",
+          contact: "Contacta directamente con el diseñador del juego para preguntas, ideas de nuevos modos de juego, erratas en el reglamento, etc.",
+          emailLabel: "Tu correo",
+          emailOpt: "(opcional, para poder responderte)",
+          msgLabel: "Tu mensaje",
+          msgPh: "Haz una pregunta, propón un modo o dinos qué no queda claro…",
+          send: "Enviar mensaje",
+          success: "¡Gracias! Mensaje enviado.",
+          newMsg: "Escribir otro mensaje"
+        },
+        ru: {
+          title: "Правила Ayakucho",
+          ver: "Версия 5.1 · бесплатно",
+          msg: "Эти правила ещё в работе: их нужно вычитать, перевести и добавить иллюстрации, над которыми сейчас работает Maja. А пока наслаждайся самой сутью (пусть и неказистой) — скачай бесплатно ниже.",
+          download: "Скачать правила (PDF)",
+          open: "Открыть в новой вкладке",
+          contact: "Свяжись с геймдизайнером напрямую по вопросам, идеям новых режимов, опечаткам в правилах и т. д.",
+          emailLabel: "Твоя почта",
+          emailOpt: "(необязательно, чтобы мы могли ответить)",
+          msgLabel: "Твоё сообщение",
+          msgPh: "Задай вопрос, предложи режим или скажи, что непонятно…",
+          send: "Отправить сообщение",
+          success: "Спасибо! Сообщение отправлено.",
+          newMsg: "Написать ещё сообщение"
+        },
+        pt: {
+          title: "Regras de Ayakucho",
+          ver: "Versão 5.1 · grátis",
+          msg: "Estas regras estão em andamento: falta revisar, traduzir e adicionar ilustrações, no que a Maja está trabalhando agora. Por enquanto, aproveite o essencial (mesmo feio) baixando de graça abaixo.",
+          download: "Baixar as regras (PDF)",
+          open: "Abrir em nova aba",
+          contact: "Fale diretamente com o designer do jogo para dúvidas, ideias de novos modos de jogo, erros de digitação nas regras, etc.",
+          emailLabel: "Seu e-mail",
+          emailOpt: "(opcional, para podermos responder)",
+          msgLabel: "Sua mensagem",
+          msgPh: "Faça uma pergunta, sugira um modo ou diga o que não está claro…",
+          send: "Enviar mensagem",
+          success: "Obrigado! Mensagem enviada.",
+          newMsg: "Escrever nova mensagem"
+        },
+        ja: {
+          title: "Ayakuchoのルールブック",
+          ver: "バージョン5.1・無料",
+          msg: "このルールブックは制作中です。校正・翻訳・イラストの追加が必要で、今まさにMajaが取り組んでいます。今のところは、素朴な必要最低限版を下から無料でダウンロードしてお楽しみください。",
+          download: "ルールブックをダウンロード（PDF）",
+          open: "新しいタブで開く",
+          contact: "質問、新しいゲームモードのアイデア、ルールブックの誤字などは、ゲームデザイナーに直接ご連絡ください。",
+          emailLabel: "メールアドレス",
+          emailOpt: "（任意・返信できるように）",
+          msgLabel: "メッセージ",
+          msgPh: "質問する、モードを提案する、わかりにくい点を教える…",
+          send: "メッセージを送信",
+          success: "ありがとうございます！送信しました。",
+          newMsg: "新しいメッセージを書く"
+        }
+      };
+
+      var LANGS = ["en", "de", "es", "ru", "pt", "ja"];
+      var KEY = "ayk-rb-lang";
+
+      function detect() {
+        try {
+          var saved = localStorage.getItem(KEY);
+          if (saved && LANGS.indexOf(saved) !== -1) return saved;
+          var main = localStorage.getItem("ayk-lang");
+          if (main && LANGS.indexOf(main) !== -1) return main;
+        } catch (e) {}
+        var prefs = navigator.languages || [navigator.language || "en"];
+        for (var i = 0; i < prefs.length; i++) {
+          var p = String(prefs[i]).toLowerCase().split("-")[0];
+          if (LANGS.indexOf(p) !== -1) return p;
+        }
+        return "en";
+      }
+
+      function apply(lang) {
+        var d = DICT[lang] || DICT.en;
+        document.documentElement.lang = lang;
+        document.querySelectorAll("[data-i18n]").forEach(function (el) {
+          var v = d[el.getAttribute("data-i18n")];
+          if (v) el.textContent = v;
+        });
+        document.querySelectorAll("[data-i18n-ph]").forEach(function (el) {
+          var v = d[el.getAttribute("data-i18n-ph")];
+          if (v) el.setAttribute("placeholder", v);
+        });
+        var sel = document.querySelector("[data-lang]");
+        if (sel) sel.value = lang;
+        try { localStorage.setItem(KEY, lang); } catch (e) {}
+      }
+
+      var select = document.querySelector("[data-lang]");
+      if (select) select.addEventListener("change", function () { apply(select.value); });
+      apply(detect());
+
+      /* ---- feedback: send, then swap the whole box for a thank-you ---- */
       var form = document.querySelector("[data-fb-form]");
-      var ok = document.querySelector("[data-fb-success]");
-      if (!form || !ok) return;
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        var data = new URLSearchParams(new FormData(form)).toString();
-        function done() { ok.hidden = false; form.reset(); }
-        // POST to /rulebook/ (not /, which redirects to Kickstarter).
-        fetch("/rulebook/", {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: data
-        }).then(done).catch(done);
-      });
+      var viewForm = document.querySelector('[data-fb-view="form"]');
+      var viewThanks = document.querySelector('[data-fb-view="thanks"]');
+      var again = document.querySelector("[data-fb-again]");
+
+      if (form && viewForm && viewThanks) {
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var data = new URLSearchParams(new FormData(form)).toString();
+          function done() { viewForm.hidden = true; viewThanks.hidden = false; }
+          // POST to /rulebook/ (not /, which redirects to Kickstarter).
+          fetch("/rulebook/", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: data
+          }).then(done).catch(done);
+        });
+      }
+      if (again) {
+        again.addEventListener("click", function () {
+          form.reset();
+          viewThanks.hidden = true;
+          viewForm.hidden = false;
+        });
+      }
     })();
   </script>
 </body>
